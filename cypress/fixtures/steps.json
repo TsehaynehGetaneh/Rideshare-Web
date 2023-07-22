@@ -1,0 +1,22 @@
+[
+  {
+    "step_number": 1,
+    "title": "REQUEST A RIDE",
+    "description": "Have to reach office or going for shopping ? Just put your current location and destination and search a ride that suits you"
+  },
+  {
+    "step_number": 2,
+    "title": "POST A RIDE",
+    "description": "Going somewhere but hate to travel alone  or want to make some extra cash just post your ride details and publish it"
+  },
+  {
+    "step_number": 3,
+    "title": "INSTANT NOTIFICATIONS",
+    "description": "Get instant notifications for your rides and be in contact with fellow riders all the time whether you want to take passagers or is one"
+  },
+  {
+    "step_number": 4,
+    "title": "CASHLESS PAYMENT",
+    "description": "Payment made easy by using your own Wallet - no more cash to carry"
+  }
+]

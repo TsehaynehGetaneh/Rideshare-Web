@@ -1,0 +1,68 @@
+[
+    {
+        "Driver_Name" : "John Black",
+        "Current_Location" : "Piassa",
+        "Destination" : "Bole",
+        "Available_Seats" : "2",
+        "Vehicle_Plate_Number" : "397019",
+        "Estimated_Cost" : "340",
+        "Estimated_Duration" : "1.30",
+        "Status" : "waiting",
+        "Date" : "Jan 6, 2022"
+    },
+    {
+        "Driver_Name" : "John Black",
+        "Current_Location" : "Piassa",
+        "Destination" : "Bole",
+        "Available_Seats" : "2",
+        "Vehicle_Plate_Number" : "397019",
+        "Estimated_Cost" : "340",
+        "Estimated_Duration" : "1.30",
+        "Status" : "onRoute",
+        "Date" : "Jan 6, 2022"
+    },
+    {
+        "Driver_Name" : "John Black",
+        "Current_Location" : "Piassa",
+        "Destination" : "Bole",
+        "Available_Seats" : "2",
+        "Vehicle_Plate_Number" : "397019",
+        "Estimated_Cost" : "340",
+        "Estimated_Duration" : "1.30",
+        "Status" : "cancelled",
+        "Date" : "Jan 6, 2022"
+    },
+    {
+        "Driver_Name" : "John Black",
+        "Current_Location" : "Piassa",
+        "Destination" : "Bole",
+        "Available_Seats" : "2",
+        "Vehicle_Plate_Number" : "397019",
+        "Estimated_Cost" : "340",
+        "Estimated_Duration" : "1.30",
+        "Status" : "Completed",
+        "Date" : "Jan 6, 2022"
+    },
+    {
+        "Driver_Name" : "John Black",
+        "Current_Location" : "Piassa",
+        "Destination" : "Bole",
+        "Available_Seats" : "2",
+        "Vehicle_Plate_Number" : "397019",
+        "Estimated_Cost" : "340",
+        "Estimated_Duration" : "1.30",
+        "Status" : "waiting",
+        "Date" : "Jan 6, 2022"
+    },
+    {
+        "Driver_Name" : "John Black",
+        "Current_Location" : "Piassa",
+        "Destination" : "Bole",
+        "Available_Seats" : "2",
+        "Vehicle_Plate_Number" : "397019",
+        "Estimated_Cost" : "340",
+        "Estimated_Duration" : "1.30",
+        "Status" : "onRoute",
+        "Date" : "Jan 6, 2022"
+    }
+]
