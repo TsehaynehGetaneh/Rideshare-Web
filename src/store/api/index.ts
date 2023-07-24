@@ -12,11 +12,12 @@ import {
   VerticalBarChartData,
 } from "@/types/stat";
 import { getObjectKeysAndValues } from "@/utils";
+import { RideRequest, RideRequestFilter } from "@/types/admin/ride-request";
 
 export const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://rideshare-app.onrender.com/api/",
+    baseUrl: "https://rideshare-swdm.onrender.com/api/",
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as RootState).auth.accessToken;
       if (token) {
@@ -25,19 +26,19 @@ export const apiSlice = createApi({
       return headers;
     },
   }),
-  tagTypes: ["Users"],
+  tagTypes: ["Users", "RideRequests"],
   endpoints: (builder) => ({
     adminLogin: builder.mutation<LoginResponse, Credentials>({
       query: (credentials) => ({
-        url: "User/admin/login",
+        url: "users/admin/login",
         method: "POST",
         body: credentials,
       }),
     }),
     getDriverByID: builder.query<Driver, string>({
       query: (id) => `Driver/admin/${id}`,
-      transformResponse(baseQueryReturnValue:any, meta, arg) {
-        return baseQueryReturnValue.value
+      transformResponse(baseQueryReturnValue: any, meta, arg) {
+        return baseQueryReturnValue.value;
       },
     }),
     getDriverStat: builder.query<VerticalBarChartData, TimeFrame>({
@@ -82,7 +83,10 @@ export const apiSlice = createApi({
         };
       },
     }),
-    getCommutersStatusStat: builder.query<{ statuses: string[], count: number[]}, void>({
+    getCommutersStatusStat: builder.query<
+      { statuses: string[]; count: number[] },
+      void
+    >({
       query: () => `Commuter/commuter-status`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
         const [statuses, count] = getObjectKeysAndValues(
@@ -185,9 +189,9 @@ export const apiSlice = createApi({
     }),
     getRideOfferStat: builder.query<VerticalBarChartData, TimeFrame>({
       query: ({ year, month, option }) =>
-        `RideOffers/Statistics?options=${option}${
-          year ? "&Year=" + year : ""
-        }${month ? "&Month=" + month : ""}`,
+        `RideOffers/Statistics?options=${option}${year ? "&Year=" + year : ""}${
+          month ? "&Month=" + month : ""
+        }`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
         const [xAxisData, yAxisData] = getObjectKeysAndValues(
           baseQueryReturnValue.value
@@ -210,10 +214,14 @@ export const apiSlice = createApi({
         return { statuses: statuses as string[], count: count as number[] };
       },
     }),
-    getRiderOffersOverTimeStatusStat: builder.query<{failed:VerticalBarChartData, completed:VerticalBarChartData}, TimeFrame>({
-      query: ({ year, month, option }) => `RideOffers/Statistics/Status?options=${option}${
-        year ? "&Year=" + year : ""
-      }${month ? "&Month=" + month : ""}`,
+    getRiderOffersOverTimeStatusStat: builder.query<
+      { failed: VerticalBarChartData; completed: VerticalBarChartData },
+      TimeFrame
+    >({
+      query: ({ year, month, option }) =>
+        `RideOffers/Statistics/Status?options=${option}${
+          year ? "&Year=" + year : ""
+        }${month ? "&Month=" + month : ""}`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
         const [failedX, failedY] = getObjectKeysAndValues(
           baseQueryReturnValue.value.failed
@@ -222,22 +230,22 @@ export const apiSlice = createApi({
           baseQueryReturnValue.value.completed
         );
         return {
-          failed:{
-            xAxisData:failedX as string[],
-            yAxisData:failedY
+          failed: {
+            xAxisData: failedX as string[],
+            yAxisData: failedY,
           },
-          completed:{
-            xAxisData:completedX as string[],
-            yAxisData:completedY
+          completed: {
+            xAxisData: completedX as string[],
+            yAxisData: completedY,
           },
         };
       },
     }),
     getRideRequestsStat: builder.query<VerticalBarChartData, TimeFrame>({
       query: ({ year, month, option }) =>
-        `RideRequest/Statstics?type=${option}${
-          year ? "&year=" + year : ""
-        }${month ? "&month=" + month : ""}`,
+        `RideRequest/Statstics?type=${option}${year ? "&year=" + year : ""}${
+          month ? "&month=" + month : ""
+        }`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
         const [xAxisData, yAxisData] = getObjectKeysAndValues(
           baseQueryReturnValue.value
@@ -254,7 +262,10 @@ export const apiSlice = createApi({
         return baseQueryReturnValue.value;
       },
     }),
-    getRideRequestsStatusCount: builder.query<{statuses:string[], count:number[]}, void>({
+    getRideRequestsStatusCount: builder.query<
+      { statuses: string[]; count: number[] },
+      void
+    >({
       query: () => `RideRequest/AllStatus/Statstics`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
         const [statuses, count] = getObjectKeysAndValues(
@@ -263,10 +274,14 @@ export const apiSlice = createApi({
         return { statuses: statuses as string[], count: count as number[] };
       },
     }),
-    getRideRequestOverTimeStatusStat: builder.query<{failed:VerticalBarChartData, completed:VerticalBarChartData}, TimeFrame>({
-      query: ({ year, month, option }) => `RideRequest/status/statstics?type=${option}${
-        year ? "&year=" + year : ""
-      }${month ? "&month=" + month : ""}`,
+    getRideRequestOverTimeStatusStat: builder.query<
+      { failed: VerticalBarChartData; completed: VerticalBarChartData },
+      TimeFrame
+    >({
+      query: ({ year, month, option }) =>
+        `RideRequest/status/statstics?type=${option}${
+          year ? "&year=" + year : ""
+        }${month ? "&month=" + month : ""}`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
         const [failedX, failedY] = getObjectKeysAndValues(
           baseQueryReturnValue.value.failed
@@ -275,18 +290,58 @@ export const apiSlice = createApi({
           baseQueryReturnValue.value.completed
         );
         return {
-          failed:{
-            xAxisData:failedX as string[],
-            yAxisData:failedY
+          failed: {
+            xAxisData: failedX as string[],
+            yAxisData: failedY,
           },
-          completed:{
-            xAxisData:completedX as string[],
-            yAxisData:completedY
+          completed: {
+            xAxisData: completedX as string[],
+            yAxisData: completedY,
           },
         };
       },
     }),
+
+    getRideRequests: builder.query<
+      { pages: number; rideRequests: RideRequest[] },
+      { page: number; size: number }
+    >({
+      query: ({ page, size }) =>
+        `riderequests/all?pageNumber=${page}&pageSize=${size}`,
+      providesTags: ["RideRequests"],
+      transformResponse(baseQueryReturnValue: any, meta, arg) {
+        return {
+          pages: Math.ceil(
+            baseQueryReturnValue.count /
+              baseQueryReturnValue.pageSize
+          ),
+          rideRequests: baseQueryReturnValue.value,
+        };
+      },
+    }),
+
+    filterRideRequests: builder.query<
+      { pages: number; rideRequests: RideRequest[] },
+      RideRequestFilter
+    >({
+      query: ({ page, size, name, fare, status }) =>
+        `riderequests/filter?pageNumber=${page}&pageSize=${size}${
+          name && "&name=" + name
+        }${status && "&status=" + status}${fare && "&fare=" + fare}`,
+      providesTags: ["RideRequests"],
+      transformResponse(baseQueryReturnValue: any, meta, arg) {
+        return {
+          pages: Math.ceil(
+            baseQueryReturnValue.count /
+              baseQueryReturnValue.pageSize
+          ),
+          rideRequests: baseQueryReturnValue.value,
+        };
+      },
+    }),
   }),
+
+  
 });
 
 export const {
@@ -313,4 +368,6 @@ export const {
   useGetUsersQuery,
   useGetTotalSummaryQuery,
   useFilterUsersQuery,
+  useGetRideRequestsQuery,
+  useFilterRideRequestsQuery
 } = apiSlice;
