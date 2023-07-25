@@ -6,7 +6,7 @@ import { mount } from 'cypress/react18';
 
 describe('getRequestStatus Function', () => {
   const status_map = {
-    0: "Wating",
+    0: "Waiting",
     1: "OnRoute",
     2: "Completed",
     3: "Canceled",
