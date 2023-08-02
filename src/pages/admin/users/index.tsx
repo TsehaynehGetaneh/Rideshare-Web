@@ -30,6 +30,7 @@ const Users = (props: UsersProps) => {
   const [phone, setPhone] = useState("");
   const [skipPagination, setSkipPagination] = useState(false);
   const [skipFilter, setSkipFilter] = useState(true);
+
   const {
     data: paginationResult,
     error: paginationError,
@@ -40,6 +41,7 @@ const Users = (props: UsersProps) => {
     { page: currentPage, size: 10 },
     { skip: skipPagination }
   );
+
   const {
     data: filterResult,
     error: filterError,
@@ -59,12 +61,12 @@ const Users = (props: UsersProps) => {
       skip: skipFilter,
     }
   );
-
+  
   const users = filterResult?.users || paginationResult?.users || [];
-  const pages = filterResult?.pages || paginationResult?.pages
-  const isLoading =
-    filterLoading || paginationLoading 
+  const pages = filterResult?.pages || paginationResult?.pages;
+  const isLoading = filterLoading || paginationLoading;
   const error = filterError || paginationError;
+
   useEffect(() => {
     if (role || status || query.length > 0) {
       setSkipPagination(true);
@@ -74,6 +76,7 @@ const Users = (props: UsersProps) => {
       setSkipPagination(false);
     }
   }, [role, status, query]);
+ 
   return (
     <div>
       <Head>

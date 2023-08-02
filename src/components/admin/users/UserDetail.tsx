@@ -36,6 +36,7 @@ const UserDetail = ({ id }: UserDetailProps) => {
       setStatus(data.statusByLogin)
     }
   },[data])
+  
   return (
     <div className="flex flex-wrap gap-10 justify-evenly items-center p-5 rounded-3xl">
       <Head>

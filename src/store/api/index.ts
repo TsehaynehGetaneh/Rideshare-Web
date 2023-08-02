@@ -34,10 +34,10 @@ export const apiSlice = createApi({
         url: "users/admin/login",
         method: "POST",
         body: credentials,
-      }),
+      }),  
     }),
     getDriverByID: builder.query<Driver, string>({
-      query: (id) => `Driver/admin/${id}`,
+      query: (userId) => `drivers/of-user/${userId}`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
         return baseQueryReturnValue.value;
       },
@@ -124,7 +124,7 @@ export const apiSlice = createApi({
       },
     }),
     getUserByID: builder.query<User, string>({
-      query: (id) => `User/withAGiven/${id}`,
+      query: (id) => `users/withAGiven/${id}`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
         return baseQueryReturnValue.value;
       },
@@ -140,11 +140,11 @@ export const apiSlice = createApi({
       { page: number; size: number }
     >({
       query: ({ page, size }) =>
-        `Feedback/?pageNumber=${page}&pageSize=${size}`,
+        `feedbacks/all?pageNumber=${page}&pageSize=${size}`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
         return {
-          total: baseQueryReturnValue.value.count,
-          feedbacks: baseQueryReturnValue.value.paginatedFeedback,
+          total: baseQueryReturnValue.count,
+          feedbacks: baseQueryReturnValue.value,
         };
       },
     }),
@@ -158,21 +158,21 @@ export const apiSlice = createApi({
       { pages: number; users: User[] },
       { page: number; size: number }
     >({
-      query: ({ page, size }) => `User/all?pageNumber=${page}&pageSize=${size}`,
+      query: ({ page, size }) => `users/all?pageNumber=${page}&pageSize=${size}`,
       providesTags: ["Users"],
       transformResponse(baseQueryReturnValue: any, meta, arg) {
         return {
           pages: Math.ceil(
-            baseQueryReturnValue.value.count /
-              baseQueryReturnValue.value.pageSize
+            baseQueryReturnValue.count /
+              baseQueryReturnValue.pageSize
           ),
-          users: baseQueryReturnValue.value.paginatedUsers,
+          users: baseQueryReturnValue.value,
         };
       },
     }),
     filterUsers: builder.query<{ pages: number; users: User[] }, UsersFilter>({
       query: ({ page, size, query, role, status, phoneNumber }) =>
-        `User/filter?pageNumber=${page}&pageSize=${size}${
+        `users/filter?pageNumber=${page}&pageSize=${size}${
           query && "&fullName=" + query
         }${status && "&status=" + status}${role && "&roleName=" + role}${
           phoneNumber && "&phoneNumber=" + phoneNumber
@@ -181,10 +181,10 @@ export const apiSlice = createApi({
       transformResponse(baseQueryReturnValue: any, meta, arg) {
         return {
           pages: Math.ceil(
-            baseQueryReturnValue.value.count /
-              baseQueryReturnValue.value.pageSize
+            baseQueryReturnValue.count /
+              baseQueryReturnValue.pageSize
           ),
-          users: baseQueryReturnValue.value.paginatedUsers,
+          users: baseQueryReturnValue.value,
         };
       },
     }),

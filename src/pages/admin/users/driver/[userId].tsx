@@ -9,7 +9,6 @@ import UserDetail from '@/components/admin/users/UserDetail';
 const User = () => {
   const router = useRouter();
   const id = router.query.userId as string;
-
   return (
     <div className='space-y-10'>
       <UserDetail id={id} />
