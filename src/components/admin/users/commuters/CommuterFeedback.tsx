@@ -17,7 +17,7 @@ const CommuterFeedback: React.FC<FeedbackProps> = ({ feedback }) => {
     <div className="max-w-2xl px-8 py-4 bg-white rounded-lg shadow-md dark:bg-gray-800 mt-8 ml-16">
       <div className="flex items-center justify-between">
         <span className="text-sm font-light text-gray-600 dark:text-gray-400">
-          {feedback.createdAt}
+          {feedback.dateCreated}
         </span>
       </div>
 
@@ -52,6 +52,7 @@ const CommuterFeedbacks = (props: CommuterFeedbacksProps) => {
       setSize(size + 5)
     }
   }
+  
   return (
     <div className="max-w-3xl">
         <h1 className="text-3xl font-semibold mx-16 mb-4">Feedbacks</h1>

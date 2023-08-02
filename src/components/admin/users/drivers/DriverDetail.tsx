@@ -28,6 +28,7 @@ const DriverDetail: React.FC<DriverDetailProps> = ({ driverID }) => {
       setIsZoomed(false);
     }
   };
+  console.log(driver)
   return (
     <div
       className={`bg-white max-w-3xl px-5 py-10 shadow-md rounded-3xl ${

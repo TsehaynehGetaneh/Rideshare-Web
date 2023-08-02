@@ -1,5 +1,6 @@
 export interface FeedBack{
-    createdAt : string,
+    userId: string;
+    dateCreated : string,
     title: string,
     content: string,
     rating:number
