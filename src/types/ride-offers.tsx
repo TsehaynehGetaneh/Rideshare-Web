@@ -8,7 +8,7 @@ export interface OffersFilter {
   phone?: string;
   MinCost?: number;
   MaxCost?: number;
-  status?: string;
+  status?: number;
 }
 
 export interface Offer {

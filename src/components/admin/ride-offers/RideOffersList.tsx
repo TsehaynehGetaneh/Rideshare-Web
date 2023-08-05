@@ -12,7 +12,7 @@ import { FaUsersSlash } from "react-icons/fa";
 const RideOffersList = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [query, setQuery] = useState("");
-  const [status, setStatus] = useState("");
+  const [status, setStatus] = useState<number>(4);
   const [minCost, setMinCost] = useState(0);
   const [maxCost, setMaxCost] = useState(0);
   const [phone, setPhone] = useState("");
@@ -41,10 +41,11 @@ const RideOffersList = () => {
           <DropDown
             label="Status"
             options={[
-              { value: "completed", option: "Completed" },
-              { value: "onRoute", option: "onRoute" },
-              { value: "waiting", option: "Waiting" },
-              { value: "cancelled", option: "Cancelled" },
+              { value: 2, option: "Completed" },
+              { value: 1, option: "onRoute" },
+              { value: 0, option: "Waiting" },
+              { value: 3, option: "Cancelled" },
+              { value: 4, option: "All" },
             ]}
             setValue={setStatus}
           />

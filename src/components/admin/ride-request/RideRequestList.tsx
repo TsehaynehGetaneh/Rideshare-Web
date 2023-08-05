@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import RideRequestItem from "./RideRequestItem";
 import DropDown from "@/components/common/admin/DropDown";
-import SearchBar from "@/components/common/admin/SearchBar";
+import SearchBar, { Query } from "@/components/common/admin/SearchBar";
 import Pagination from "@/components/common/admin/Pagination";
 import {
   useFilterRideRequestsQuery,
@@ -12,19 +12,18 @@ import UnknownError from "@/components/common/admin/UnknownError";
 import { MdFilterAltOff } from "react-icons/md";
 
 const options = [
-  { option: "All", value: "" },
-  { option: "onRoute", value: "onroute" },
-  { option: "Waiting", value: "waiting" },
-  { option: "Completed", value: "completed" },
-  { option: "Canceled", value: "canceled" },
+  { option: "All", value: 4 },
+  { option: "onRoute", value: 1 },
+  { option: "Waiting", value: 0 },
+  { option: "Completed", value: 2 },
+  { option: "Cancelled", value: 3 },
 ];
-
 const RideRequestList = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [query, setQuery] = useState("");
-  const [name, setName] = useState("");
-  const [status, setStatus] = useState("");
-  const [fare, setFare] = useState(0);
+  const [query, setQuery] = useState<Query>("");
+  const [name, setName] = useState<string>("");
+  const [status, setStatus] = useState(4);
+  const [fare, setFare] = useState<number>(0);
   const [skipPagination, setSkipPagination] = useState(false);
   const [skipFilter, setSkipFilter] = useState(true);
 
@@ -64,22 +63,29 @@ const RideRequestList = () => {
   const isLoading =
     filterLoading || paginationLoading || filterFetching || paginationFetching;
   const error = filterError || paginationError;
+
   useEffect(() => {
-    if (name || status || fare) {
+    if (name || status < 4 || fare) {
       setSkipPagination(true);
       setSkipFilter(false);
     } else {
       setSkipFilter(true);
       setSkipPagination(false);
     }
-  }, [name, status, fare]);
 
-  console.log(rideRequests);
+    if (query !== '' && (!isNaN(Number(query)))) {
+      setFare(Number(query));
+      setName("");
+    } else {
+      setName(String(query));
+      setFare(0);
+    }
+  }, [name, status, fare, query]);
 
   return (
     <div>
-      <div className="flex w-full justify-evenly my-10 items-center">
-        <SearchBar setQuery={setQuery} />
+      <div className="flex items-center w-full my-10 justify-evenly">
+        <SearchBar setQuery = {setQuery as  React.Dispatch<React.SetStateAction<string>>} />
 
         <DropDown label="Status" options={options} setValue={setStatus} />
       </div>
@@ -196,14 +202,14 @@ const RideRequestList = () => {
           )}
         </div>
       ) : (
-        <div className="flex flex-col gap-5 mt-16 items-center p-3">
+        <div className="flex flex-col items-center gap-5 p-3 mt-16">
           <MdFilterAltOff size={100} className="text-gray-400" />
           {skipFilter ? (
-            <div className="text-gray-500 text-lg text-center pb-16">
+            <div className="pb-16 text-lg text-center text-gray-500">
               There are no Ride Requests
             </div>
           ) : (
-            <div className="text-gray-500 text-lg text-center pb-16">
+            <div className="pb-16 text-lg text-center text-gray-500">
               There are no matching results
             </div>
           )}

@@ -344,8 +344,7 @@ export const apiSlice = createApi({
       transformResponse(baseQueryReturnValue: any, meta, arg) {
         return {
           pages: Math.ceil(
-            baseQueryReturnValue.count /
-              baseQueryReturnValue.pageSize
+            baseQueryReturnValue.count / baseQueryReturnValue.pageSize
           ),
           rideRequests: baseQueryReturnValue.value,
         };
@@ -356,24 +355,33 @@ export const apiSlice = createApi({
       { pages: number; rideRequests: RideRequest[] },
       RideRequestFilter
     >({
-      query: ({ page, size, name, fare, status }) =>
-        `riderequests/filter?pageNumber=${page}&pageSize=${size}${
-          name && "&name=" + name
-        }${status && "&status=" + status}${fare && "&fare=" + fare}`,
+      query: ({ page, size, name, fare, status }) => {
+        const statusParam = (status !== undefined && status >= 0 && status <= 3) ? `status=${status}&` : '';
+        const nameParam = name ? `name=${name}&` : '';
+        const fareParam = fare ? `fare=${fare}&` : '';
+    
+        return `riderequests/filter?${statusParam}${nameParam}${fareParam}pageNumber=${page}&pageSize=${size}`;
+      },
       providesTags: ["RideRequests"],
       transformResponse(baseQueryReturnValue: any, meta, arg) {
         return {
           pages: Math.ceil(
-            baseQueryReturnValue.count /
-              baseQueryReturnValue.pageSize
+            baseQueryReturnValue.count / baseQueryReturnValue.pageSize
           ),
           rideRequests: baseQueryReturnValue.value,
         };
       },
     }),
-  }),
 
-  
+    deleteRideRequest: builder.mutation<void, number>({
+      query: (id ) => ({
+        url: `riderequests/${id}`,
+        method: 'DELETE'
+      })
+         
+    }),
+    
+  }),
 });
 
 export const {
@@ -403,5 +411,7 @@ export const {
   useGetRideOffersQuery,
   useSearchRideOffersQuery,
   useGetRideRequestsQuery,
-  useFilterRideRequestsQuery
+  useFilterRideRequestsQuery,
+  useDeleteRideRequestMutation
+  
 } = apiSlice;
