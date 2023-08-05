@@ -27,6 +27,11 @@ const RideRequestList = () => {
   const [skipPagination, setSkipPagination] = useState(false);
   const [skipFilter, setSkipFilter] = useState(true);
 
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedValue = Number(e.target.value);
+    setStatus(selectedValue);
+  };
+
   const {
     data: paginationResult,
     error: paginationError,
@@ -87,7 +92,26 @@ const RideRequestList = () => {
       <div className="flex items-center w-full my-10 justify-evenly">
         <SearchBar setQuery = {setQuery as  React.Dispatch<React.SetStateAction<string>>} />
 
-        <DropDown label="Status" options={options} setValue={setStatus} />
+        <div className="flex items-center gap-2">
+      <label
+        htmlFor="role"
+        className="font-medium text-gray-900 dark:text-white"
+      >
+        Status
+      </label>
+      <select
+        className="px-3 py-2 border rounded-lg outline-none focus:ring-primary focus:border-primary"
+        name="role"
+        id="role"
+        onChange={handleChange}
+      >
+        {options.map((option, index) => (
+          <option key={index} value={option.value}>
+            {option.option}
+          </option>
+        ))}
+      </select>
+    </div>
       </div>
       {isLoading ? (
         <div className="flex w-full">
