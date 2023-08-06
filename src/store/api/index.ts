@@ -27,7 +27,7 @@ export const apiSlice = createApi({
       return headers;
     },
   }),
-  tagTypes: ["Users", "RideRequests"],
+  tagTypes: ["Users", "RideRequests", "RideOffers"],
   endpoints: (builder) => ({
     adminLogin: builder.mutation<LoginResponse, Credentials>({
       query: (credentials) => ({
@@ -203,20 +203,6 @@ export const apiSlice = createApi({
         };
       },
     }),
-    searchRideOffers: builder.query<{ pages: number; offers: Offer[] }, OffersFilter>({
-      query: ({ page, size, query, status, phone, MinCost,MaxCost }) =>
-        `RideOffers/Search?PageNumber=${page}&PageSize=${size}${query && "&DriverName=" + query}${status && "&Status=" + status}${MinCost && "&MinCost=" + MinCost}${MaxCost && "&MaxCost=" + MaxCost}${
-          phone && "&PhoneNumber=" + phone}`,
-      transformResponse(baseQueryReturnValue: any, meta, arg) {
-        return {
-          pages: Math.ceil(
-            baseQueryReturnValue.value.count /
-              baseQueryReturnValue.value.pageSize
-          ),
-          offers: baseQueryReturnValue.value.paginated,
-        };
-      },
-    }),
     getRiderOffersStatusStat: builder.query<
       { statuses: string[]; count: number[] },
       void
@@ -316,7 +302,38 @@ export const apiSlice = createApi({
         };
       },
     }),
-
+    
+    searchRideOffers: builder.query<{ pages: number; offers: Offer[] }, OffersFilter>({
+      query: ({ page, size, query, status, phone, MinCost,MaxCost }) =>
+        `RideOffers/Search?PageNumber=${page}&PageSize=${size}${query && "&DriverName=" + query}${status && "&Status=" + status}${MinCost && "&MinCost=" + MinCost}${MaxCost && "&MaxCost=" + MaxCost}${
+          phone && "&PhoneNumber=" + phone}`,
+      transformResponse(baseQueryReturnValue: any, meta, arg) {
+        return {
+          pages: Math.ceil(
+            baseQueryReturnValue.value.count /
+              baseQueryReturnValue.value.pageSize
+          ),
+          offers: baseQueryReturnValue.value.paginated,
+        };
+      },
+    }),
+    getRideOffers: builder.query<
+      { pages: number; rideOffers: Offer[] },
+      { page: number; size: number }
+    >({
+      query: ({ page, size }) =>
+        `rideoffers/all?pageNumber=${page}&pageSize=${size}`,
+      providesTags: ["RideOffers"],
+      transformResponse(baseQueryReturnValue: any, meta, arg) {
+        return {
+          pages: Math.ceil(
+            baseQueryReturnValue.count /
+              baseQueryReturnValue.pageSize
+          ),
+          rideOffers: baseQueryReturnValue.value,
+        };
+      },
+    }),
     getRideRequests: builder.query<
       { pages: number; rideRequests: RideRequest[] },
       { page: number; size: number }
@@ -362,7 +379,6 @@ export const apiSlice = createApi({
 export const {
   useAdminLoginMutation,
   useGetCommutersStatQuery,
-  useSearchRideOffersQuery,
   useGetCommutersStatusStatQuery,
   useGetRideRequestsStatusCountQuery,
   useGetDriverStatQuery,
@@ -384,6 +400,8 @@ export const {
   useGetUsersQuery,
   useGetTotalSummaryQuery,
   useFilterUsersQuery,
+  useGetRideOffersQuery,
+  useSearchRideOffersQuery,
   useGetRideRequestsQuery,
   useFilterRideRequestsQuery
 } = apiSlice;

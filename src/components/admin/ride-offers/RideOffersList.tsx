@@ -4,18 +4,18 @@ import { BsFillTrash3Fill } from "react-icons/bs";
 import SearchBar from "@/components/common/admin/SearchBar";
 import DropDown from "@/components/common/admin/DropDown";
 import Pagination from "@/components/common/admin/Pagination";
-import { useSearchRideOffersQuery } from "@/store/api";
+import { useSearchRideOffersQuery, useGetRideOffersQuery } from "@/store/api";
 import { ClipLoader } from "react-spinners";
 import UnknownError from "@/components/common/admin/UnknownError";
 import { FaUsersSlash } from "react-icons/fa";
 
-const status_map = new Map([
-  ["0", "Wating"],
-  ["1", "OnRoute"],
-  ["2", "Completed"],
-  ["3", "Canceled"],
-  ["4", "None"],
-]);
+// const status_map = new Map([
+//   ["0", "Wating"],
+//   ["1", "OnRoute"],
+//   ["2", "Completed"],
+//   ["3", "Canceled"],
+//   ["4", "None"],
+// ]);
 const RideOffersList = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [query, setQuery] = useState("");
@@ -23,24 +23,42 @@ const RideOffersList = () => {
   const [minCost, setMinCost] = useState(0);
   const [maxCost, setMaxCost] = useState(0);
   const [phone, setPhone] = useState("");
+  const [skipPagination, setSkipPagination] = useState(false);
 
   const {
-    data,
-    isLoading: rideofferLoading,
-    refetch,
-    isError,
-  } = useSearchRideOffersQuery({
-    page: currentPage,
-    size: 10,
-    phone: phone,
-    query: query,
-    MinCost: minCost,
-    MaxCost: maxCost,
-    status: status,
-  });
-  console.log(rideofferLoading);
-  const offers = data?.offers;
-  const pages = data?.pages;
+    data: paginationResult,
+    error: paginationError,
+    isLoading: paginationLoading,
+    isFetching: paginationFetching,
+    refetch: refetchPagination,
+  } = useGetRideOffersQuery(
+    { page: currentPage, size: 10 },
+    { skip: skipPagination }
+  );
+
+  const rideoffers = paginationResult?.rideOffers;
+
+  const pages = paginationResult?.pages;
+
+  console.log(rideoffers);
+
+  // const {
+  //   data,
+  //   isLoading: rideofferLoading,
+  //   refetch,
+  //   isError,
+  // } = useSearchRideOffersQuery({
+  //   page: currentPage,
+  //   size: 10,
+  //   phone: phone,
+  //   query: query,
+  //   MinCost: minCost,
+  //   MaxCost: maxCost,
+  //   status: status,
+  // });
+  // console.log(rideofferLoading);
+  // const offers = data?.offers;
+  // const pages = data?.pages;
   return (
     <div>
       <section className="container px-4 mx-auto">
@@ -57,13 +75,13 @@ const RideOffersList = () => {
             setValue={setStatus}
           />
         </div>
-        {rideofferLoading ? (
+        {paginationLoading ? (
           <div className="flex w-full">
             <ClipLoader color="indigo" className="mx-auto mt-24" size={40} />
           </div>
-        ) : isError ? (
-          <UnknownError refresh={refetch} />
-        ) : offers && offers.length > 0 ? (
+        ) : paginationError ? (
+          <UnknownError refresh={refetchPagination} />
+        ) : rideoffers && rideoffers.length > 0 ? (
           <div className="flex flex-col mt-6">
             <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
               <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
@@ -93,7 +111,7 @@ const RideOffersList = () => {
                             <span>Destination</span>
                           </div>
                         </th>
-                        <th
+                        {/* <th
                           scope="col"
                           className="py-3.5 px-1.5 text-sm font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400"
                         >
@@ -108,7 +126,7 @@ const RideOffersList = () => {
                           <div className="flex items-center gap-x-1">
                             <span>Estimated Duration</span>
                           </div>
-                        </th>
+                        </th> */}
 
                         <th
                           scope="col"
@@ -138,11 +156,11 @@ const RideOffersList = () => {
                     </thead>
 
                     <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
-                      {offers.map((offer, index) => (
+                      {rideoffers.map((offer, index) => (
                         <tr key={index}>
                           <td className="px-3 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                             <h2 className="font-medium text-gray-800 dark:text-white">
-                              {offer.driver.user.fullName}
+                              {offer.driver.userId}
                             </h2>
                           </td>
                           <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
@@ -151,12 +169,12 @@ const RideOffersList = () => {
                           <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                             {offer.destinationAddress}
                           </td>
-                          <td className="px-7 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                          {/* <td className="px-7 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                             {offer.estimatedFare}
                           </td>
                           <td className="px-7 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                             {offer.estimatedDuration}
-                          </td>
+                          </td> */}
                           <td className="px-10 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                             {offer.availableSeats}
                           </td>
