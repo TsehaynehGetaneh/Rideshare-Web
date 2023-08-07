@@ -16,8 +16,6 @@ export interface Offer {
   driver: Driver;
   originAddress: string;
   destinationAddress: string;
-  status: number;
+  status: string;
   availableSeats: number;
-  estimatedFare: number;
-  estimatedDuration: string;
 }
