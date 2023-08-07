@@ -9,13 +9,6 @@ import { ClipLoader } from "react-spinners";
 import UnknownError from "@/components/common/admin/UnknownError";
 import { FaUsersSlash } from "react-icons/fa";
 
-// const status_map = new Map([
-//   ["0", "Wating"],
-//   ["1", "OnRoute"],
-//   ["2", "Completed"],
-//   ["3", "Canceled"],
-//   ["4", "None"],
-// ]);
 const RideOffersList = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [query, setQuery] = useState("");
@@ -40,25 +33,6 @@ const RideOffersList = () => {
 
   const pages = paginationResult?.pages;
 
-  console.log(rideoffers);
-
-  // const {
-  //   data,
-  //   isLoading: rideofferLoading,
-  //   refetch,
-  //   isError,
-  // } = useSearchRideOffersQuery({
-  //   page: currentPage,
-  //   size: 10,
-  //   phone: phone,
-  //   query: query,
-  //   MinCost: minCost,
-  //   MaxCost: maxCost,
-  //   status: status,
-  // });
-  // console.log(rideofferLoading);
-  // const offers = data?.offers;
-  // const pages = data?.pages;
   return (
     <div>
       <section className="container px-4 mx-auto">
@@ -111,22 +85,6 @@ const RideOffersList = () => {
                             <span>Destination</span>
                           </div>
                         </th>
-                        {/* <th
-                          scope="col"
-                          className="py-3.5 px-1.5 text-sm font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400"
-                        >
-                          <div className="flex items-center gap-x-1">
-                            <span>Estimated Cost</span>
-                          </div>
-                        </th>
-                        <th
-                          scope="col"
-                          className="py-3.5 px-1.5 text-sm font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400"
-                        >
-                          <div className="flex items-center gap-x-1">
-                            <span>Estimated Duration</span>
-                          </div>
-                        </th> */}
 
                         <th
                           scope="col"
@@ -169,12 +127,6 @@ const RideOffersList = () => {
                           <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                             {offer.destinationAddress}
                           </td>
-                          {/* <td className="px-7 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                            {offer.estimatedFare}
-                          </td>
-                          <td className="px-7 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                            {offer.estimatedDuration}
-                          </td> */}
                           <td className="px-10 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                             {offer.availableSeats}
                           </td>
