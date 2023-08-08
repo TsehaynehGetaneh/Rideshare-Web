@@ -28,14 +28,14 @@ const DriverDetail: React.FC<DriverDetailProps> = ({ driverID }) => {
       setIsZoomed(false);
     }
   };
-  console.log(driver)
+  
   return (
     <div
       className={`bg-white max-w-3xl px-5 py-10 shadow-md rounded-3xl ${
         isZoomed ? 'overflow-hidden' : ''
       }`}
     >
-      <h1 className="text-3xl font-semibold pl-5 mb-4">Driver Details</h1>
+      <h1 data-cy="driver-details" className="text-3xl font-semibold pl-5 mb-4">Driver Details</h1>
       { isLoading ? 
         <div className="flex w-full h-72">
           <ClipLoader color="indigo" className="mx-auto mt-24" size={40} />
@@ -74,11 +74,12 @@ const DriverDetail: React.FC<DriverDetailProps> = ({ driverID }) => {
         <div className="grid grid-cols-3 items-center gap-8 min-w-[500px]">
           <div className='flex items-center gap-5'>
             <TbLicense  className='text-primary' size={30}/>
-            <span className='font-semibold text-xl'>License</span>
+            <span data-cy="license-text" className='font-semibold text-xl'>License</span>
 
           </div>
           <div className="relative col-span-2">
             <Image
+              data-cy="license-img"
               src={driver.license}
               alt="Driver License"
               width={150}
@@ -91,6 +92,7 @@ const DriverDetail: React.FC<DriverDetailProps> = ({ driverID }) => {
             {isZoomed && (
               <div className="zoom-background" onClick={toggleZoom}>
                 <Image
+                  data-cy="license-img"
                   src={driver.license}
                   alt="Driver License"
                   width={500}
@@ -101,24 +103,24 @@ const DriverDetail: React.FC<DriverDetailProps> = ({ driverID }) => {
           </div>
           <div className='flex items-center gap-5'>
             <BsCardText  className='text-primary' size={30}/>
-            <span className='font-semibold text-xl'>License No.</span>
+            <span data-cy="licenseNumber-text" className='font-semibold text-xl'>License No.</span>
           </div>
-          <span className='col-span-2'>{driver.licenseNumber}</span>
+          <span data-cy="licenseNumber-value" className='col-span-2'>{driver.licenseNumber}</span>
           <div className='flex items-center gap-5'>
             <CgWorkAlt  className='text-primary' size={30}/>
-            <span className='font-semibold text-xl'>Experience</span>
+            <span data-cy="experience-text" className='font-semibold text-xl'>Experience</span>
           </div>
-          <span className='col-span-2'>{driver.experience}</span>
+          <span data-cy="experience-value" className='col-span-2'>{driver.experience}</span>
           <div className='flex items-center gap-5'>
             <HiLocationMarker  className='text-primary' size={30}/>
-            <span className='font-semibold text-xl'>Address</span>
+            <span data-cy="address-text" className='font-semibold text-xl'>Address</span>
           </div>
-          <span className='col-span-2'>{driver.address}</span>
+          <span data-cy="address-value" className='col-span-2'>{driver.address}</span>
           <div className='flex items-center gap-5'>
             <MdOutlineStarRate  className='text-primary' size={30}/>
-            <span className='font-semibold text-xl'>Rate Number</span>
+            <span data-cy="rateNumber-text" className='font-semibold text-xl'>Rate Number</span>
           </div>
-          <span className='col-span-2'>{driver.rate[2]}</span>
+          <span data-cy="rateNumber-value" className='col-span-2'>{driver.rate[2]}</span>
           
         </div>
       </div>:
