@@ -5,6 +5,7 @@ import { Driver } from "@/types/driver";
 import { User, UsersFilter } from "@/types/Users";
 import { FeedBack } from "@/types/commuter";
 import { Offer, OffersFilter } from "@/types/ride-offers";
+
 import {
   PercentageChange,
   TimeFrame,
@@ -12,6 +13,7 @@ import {
   TopVehicles,
   VerticalBarChartData,
 } from "@/types/stat";
+
 import { getObjectKeysAndValues } from "@/utils";
 import { RideRequest, RideRequestFilter } from "@/types/admin/ride-request";
 
@@ -27,24 +29,24 @@ export const apiSlice = createApi({
       return headers;
     },
   }),
-  tagTypes: ["Users", "RideRequests", "RideOffers"],
+  tagTypes: ["Users", "RideRequests"],
   endpoints: (builder) => ({
     adminLogin: builder.mutation<LoginResponse, Credentials>({
       query: (credentials) => ({
         url: "users/admin/login",
         method: "POST",
         body: credentials,
-      }),  
+      }),
     }),
     getDriverByID: builder.query<Driver, string>({
-      query: (userId) => `drivers/of-user/${userId}`,
+      query: (id) => `Driver/admin/${id}`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
         return baseQueryReturnValue.value;
       },
     }),
     getDriverStat: builder.query<VerticalBarChartData, TimeFrame>({
       query: ({ year, month, option }) =>
-        `Driver/statistics?timeFrame=${option}${year ? "&year=" + year : ""}${
+        `statistics/drivers/time-series?timeFrame=${option}${year ? "&year=" + year : ""}${
           month ? "&month=" + month : ""
         }`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
@@ -57,26 +59,29 @@ export const apiSlice = createApi({
         };
       },
     }),
+    
     getTopDrivers: builder.query<TopDrivers[], void>({
-      query: () => `RideOffers/TopFiveDrivers`,
+      query: () => `statistics/drivers/top-five`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
         return baseQueryReturnValue.value;
       },
     }),
+
     getDriverStatusStat: builder.query<number[], void>({
-      query: () => `Driver/status`,
+      query: () => `statistics/drivers/status-count`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
         return baseQueryReturnValue.value;
       },
     }),
+
     getCommutersStat: builder.query<VerticalBarChartData, TimeFrame>({
       query: ({ year, month, option }) =>
-        `Commuter/commuter-count?option=${option}${
+        `statistics/commuters/time-series?option=${option}${
           year ? "&year=" + year : ""
         }${month ? "&month=" + month : ""}`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
         const [xAxisData, yAxisData] = getObjectKeysAndValues(
-          baseQueryReturnValue.value.monthlyCounts
+          baseQueryReturnValue.value
         );
         return {
           xAxisData: xAxisData as string[],
@@ -84,11 +89,12 @@ export const apiSlice = createApi({
         };
       },
     }),
+
     getCommutersStatusStat: builder.query<
       { statuses: string[]; count: number[] },
       void
     >({
-      query: () => `Commuter/commuter-status`,
+      query: () => `statistics/commuters/status-count`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
         const [statuses, count] = getObjectKeysAndValues(
           baseQueryReturnValue.value
@@ -97,14 +103,14 @@ export const apiSlice = createApi({
       },
     }),
     getTopCommuters: builder.query<number[], void>({
-      query: () => `User/Top5Commuter`,
+      query: () => `statistics/commuters/top-five`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
         return baseQueryReturnValue.value;
       },
     }),
     getVehicleStat: builder.query<VerticalBarChartData, TimeFrame>({
       query: ({ year, month, option }) =>
-        `Vehicles/NumberOfVehicle?option=${option}${
+        `statistics/vehicles/time-series?option=${option}${
           year ? "&year=" + year : ""
         }${month ? "&month=" + month : ""}`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
@@ -118,19 +124,19 @@ export const apiSlice = createApi({
       },
     }),
     getTopVehiclesStat: builder.query<TopVehicles[], void>({
-      query: () => `RideOffers/NoRideOfferForTop10Model`,
+      query: () => `statistics/rideoffers/top-ten-model-count`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
         return baseQueryReturnValue.value;
       },
     }),
     getUserByID: builder.query<User, string>({
-      query: (id) => `users/withAGiven/${id}`,
+      query: (id) => `User/withAGiven/${id}`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
         return baseQueryReturnValue.value;
       },
     }),
     getTotalCommuters: builder.query<PercentageChange, void>({
-      query: () => `User/statstics/week`,
+      query: () => `statstics/week/percentage-change`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
         return baseQueryReturnValue.value;
       },
@@ -140,16 +146,16 @@ export const apiSlice = createApi({
       { page: number; size: number }
     >({
       query: ({ page, size }) =>
-        `feedbacks/all?pageNumber=${page}&pageSize=${size}`,
+        `Feedback/?pageNumber=${page}&pageSize=${size}`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
         return {
-          total: baseQueryReturnValue.count,
-          feedbacks: baseQueryReturnValue.value,
+          total: baseQueryReturnValue.value.count,
+          feedbacks: baseQueryReturnValue.value.paginatedFeedback,
         };
       },
     }),
     getTotalSummary: builder.query<PercentageChange[], void>({
-      query: () => `Statistics/Week/PercentageChange`,
+      query: () => `statistics/week/percentage-change`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
         return baseQueryReturnValue.value;
       },
@@ -158,21 +164,21 @@ export const apiSlice = createApi({
       { pages: number; users: User[] },
       { page: number; size: number }
     >({
-      query: ({ page, size }) => `users/all?pageNumber=${page}&pageSize=${size}`,
+      query: ({ page, size }) => `User/all?pageNumber=${page}&pageSize=${size}`,
       providesTags: ["Users"],
       transformResponse(baseQueryReturnValue: any, meta, arg) {
         return {
           pages: Math.ceil(
-            baseQueryReturnValue.count /
-              baseQueryReturnValue.pageSize
+            baseQueryReturnValue.value.count /
+              baseQueryReturnValue.value.pageSize
           ),
-          users: baseQueryReturnValue.value,
+          users: baseQueryReturnValue.value.paginatedUsers,
         };
       },
     }),
     filterUsers: builder.query<{ pages: number; users: User[] }, UsersFilter>({
       query: ({ page, size, query, role, status, phoneNumber }) =>
-        `users/filter?pageNumber=${page}&pageSize=${size}${
+        `User/filter?pageNumber=${page}&pageSize=${size}${
           query && "&fullName=" + query
         }${status && "&status=" + status}${role && "&roleName=" + role}${
           phoneNumber && "&phoneNumber=" + phoneNumber
@@ -181,16 +187,16 @@ export const apiSlice = createApi({
       transformResponse(baseQueryReturnValue: any, meta, arg) {
         return {
           pages: Math.ceil(
-            baseQueryReturnValue.count /
-              baseQueryReturnValue.pageSize
+            baseQueryReturnValue.value.count /
+              baseQueryReturnValue.value.pageSize
           ),
-          users: baseQueryReturnValue.value,
+          users: baseQueryReturnValue.value.paginatedUsers,
         };
       },
     }),
     getRideOfferStat: builder.query<VerticalBarChartData, TimeFrame>({
       query: ({ year, month, option }) =>
-        `RideOffers/Statistics?options=${option}${year ? "&Year=" + year : ""}${
+        `statistics/rideoffers/status-count?options=${option}${year ? "&Year=" + year : ""}${
           month ? "&Month=" + month : ""
         }`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
@@ -203,11 +209,25 @@ export const apiSlice = createApi({
         };
       },
     }),
+    searchRideOffers: builder.query<{ pages: number; offers: Offer[] }, OffersFilter>({
+      query: ({ page, size, query, status, phone, MinCost,MaxCost }) =>
+        `RideOffers/Search?PageNumber=${page}&PageSize=${size}${query && "&DriverName=" + query}${status && "&Status=" + status}${MinCost && "&MinCost=" + MinCost}${MaxCost && "&MaxCost=" + MaxCost}${
+          phone && "&PhoneNumber=" + phone}`,
+      transformResponse(baseQueryReturnValue: any, meta, arg) {
+        return {
+          pages: Math.ceil(
+            baseQueryReturnValue.value.count /
+              baseQueryReturnValue.value.pageSize
+          ),
+          offers: baseQueryReturnValue.value.paginated,
+        };
+      },
+    }),
     getRiderOffersStatusStat: builder.query<
       { statuses: string[]; count: number[] },
       void
     >({
-      query: () => `RideOffers/Statistics/Status/Count`,
+      query: () => `statistics/rideoffers/status-count`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
         const [statuses, count] = getObjectKeysAndValues(
           baseQueryReturnValue.value
@@ -220,7 +240,7 @@ export const apiSlice = createApi({
       TimeFrame
     >({
       query: ({ year, month, option }) =>
-        `RideOffers/Statistics/Status?options=${option}${
+      `statistics/rideoffers/time-series-for-each-status?timeframe=${option}${
           year ? "&Year=" + year : ""
         }${month ? "&Month=" + month : ""}`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
@@ -244,7 +264,7 @@ export const apiSlice = createApi({
     }),
     getRideRequestsStat: builder.query<VerticalBarChartData, TimeFrame>({
       query: ({ year, month, option }) =>
-        `RideRequest/Statstics?type=${option}${year ? "&year=" + year : ""}${
+        `statistics/riderequests/status-count?type=${option}${year ? "&year=" + year : ""}${
           month ? "&month=" + month : ""
         }`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
@@ -258,7 +278,7 @@ export const apiSlice = createApi({
       },
     }),
     getRideRequestsStatusStat: builder.query<number[], void>({
-      query: () => `RideRequests/status/statstics`,
+      query: () => `statistics/riderequests/time-series`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
         return baseQueryReturnValue.value;
       },
@@ -267,7 +287,7 @@ export const apiSlice = createApi({
       { statuses: string[]; count: number[] },
       void
     >({
-      query: () => `RideRequest/AllStatus/Statstics`,
+      query: () => `statistics/riderequests/status-count`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
         const [statuses, count] = getObjectKeysAndValues(
           baseQueryReturnValue.value
@@ -280,7 +300,7 @@ export const apiSlice = createApi({
       TimeFrame
     >({
       query: ({ year, month, option }) =>
-        `RideRequest/status/statstics?type=${option}${
+        `statistics/riderequests/time-series-for-each-status?timeframe=${option}${
           year ? "&year=" + year : ""
         }${month ? "&month=" + month : ""}`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
@@ -302,38 +322,7 @@ export const apiSlice = createApi({
         };
       },
     }),
-    
-    searchRideOffers: builder.query<{ pages: number; offers: Offer[] }, OffersFilter>({
-      query: ({ page, size, query, status, phone, MinCost,MaxCost }) =>
-        `RideOffers/Search?PageNumber=${page}&PageSize=${size}${query && "&DriverName=" + query}${status && "&Status=" + status}${MinCost && "&MinCost=" + MinCost}${MaxCost && "&MaxCost=" + MaxCost}${
-          phone && "&PhoneNumber=" + phone}`,
-      transformResponse(baseQueryReturnValue: any, meta, arg) {
-        return {
-          pages: Math.ceil(
-            baseQueryReturnValue.value.count /
-              baseQueryReturnValue.value.pageSize
-          ),
-          offers: baseQueryReturnValue.value.paginated,
-        };
-      },
-    }),
-    getRideOffers: builder.query<
-      { pages: number; rideOffers: Offer[] },
-      { page: number; size: number }
-    >({
-      query: ({ page, size }) =>
-        `rideoffers/all?pageNumber=${page}&pageSize=${size}`,
-      providesTags: ["RideOffers"],
-      transformResponse(baseQueryReturnValue: any, meta, arg) {
-        return {
-          pages: Math.ceil(
-            baseQueryReturnValue.count /
-              baseQueryReturnValue.pageSize
-          ),
-          rideOffers: baseQueryReturnValue.value,
-        };
-      },
-    }),
+
     getRideRequests: builder.query<
       { pages: number; rideRequests: RideRequest[] },
       { page: number; size: number }
@@ -379,6 +368,7 @@ export const apiSlice = createApi({
 export const {
   useAdminLoginMutation,
   useGetCommutersStatQuery,
+  useSearchRideOffersQuery,
   useGetCommutersStatusStatQuery,
   useGetRideRequestsStatusCountQuery,
   useGetDriverStatQuery,
@@ -400,8 +390,6 @@ export const {
   useGetUsersQuery,
   useGetTotalSummaryQuery,
   useFilterUsersQuery,
-  useGetRideOffersQuery,
-  useSearchRideOffersQuery,
   useGetRideRequestsQuery,
   useFilterRideRequestsQuery
 } = apiSlice;
