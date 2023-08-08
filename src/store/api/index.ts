@@ -346,7 +346,7 @@ export const apiSlice = createApi({
           pages: Math.ceil(
             baseQueryReturnValue.count / baseQueryReturnValue.pageSize
           ),
-          rideRequests: baseQueryReturnValue.value,
+          rideRequests: [],
         };
       },
     }),
@@ -360,7 +360,7 @@ export const apiSlice = createApi({
         const nameParam = name ? `name=${name}&` : '';
         const fareParam = fare ? `fare=${fare}&` : '';
     
-        return `riderequests/filter?${statusParam}${nameParam}${fareParam}pageNumber=${page}&pageSize=${size}`;
+        return `riderequests/filter${statusParam}${nameParam}${fareParam}pageNumber=${page}&pageSize=${size}`;
       },
       providesTags: ["RideRequests"],
       transformResponse(baseQueryReturnValue: any, meta, arg) {

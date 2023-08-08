@@ -1,0 +1,210 @@
+{
+    "pageNumber": 1,
+    "pageSize": 10,
+    "count": 8,
+    "success": true,
+    "message": "Fetch Successful",
+    "value": [
+      {
+        "id": 2,
+        "origin": {
+          "latitude": 9.035903240442103,
+          "longitude": 38.76190197250373
+        },
+        "destination": {
+          "latitude": 9.035235711209607,
+          "longitude": 38.76419794324873
+        },
+        "originAddress": "Romina Caffe",
+        "destinationAddress": "Minilik",
+        "currentFare": 40,
+        "status": 2,
+        "numberOfSeats": 1,
+        "user": {
+          "roles": [],
+          "fullName": "Dawit Gizaw",
+          "phoneNumber": "+251911111108",
+          "age": 0,
+          "statusByLogin": null,
+          "profilePicture": "http://res.cloudinary.com/dqy2ctugs/raw/upload/v1688115133/mteobaov9ac170lti8a1.png"
+        },
+        "accepted": true
+      },
+      {
+        "id": 7,
+        "origin": {
+          "latitude": 9.0168305393388,
+          "longitude": 38.776260394810954
+        },
+        "destination": {
+          "latitude": 9.02128024268311,
+          "longitude": 38.765837010093314
+        },
+        "originAddress": "Kazanchis",
+        "destinationAddress": "Zewuditu St.",
+        "currentFare": 40,
+        "status": 2,
+        "numberOfSeats": 1,
+        "user": {
+          "roles": [],
+          "fullName": "Abel Mekonen",
+          "phoneNumber": "+251911111111",
+          "age": 0,
+          "statusByLogin": null,
+          "profilePicture": "http://res.cloudinary.com/dqy2ctugs/raw/upload/v1688115133/mteobaov9ac170lti8a1.png"
+        },
+        "accepted": true
+      },
+      {
+        "id": 12,
+        "origin": {
+          "latitude": 9.035903240442103,
+          "longitude": 38.76190197250373
+        },
+        "destination": {
+          "latitude": 9.035235711209607,
+          "longitude": 38.76419794324873
+        },
+        "originAddress": "Romina Caffe",
+        "destinationAddress": "Minilik",
+        "currentFare": 40,
+        "status": 2,
+        "numberOfSeats": 1,
+        "user": {
+          "roles": [],
+          "fullName": "Ephrem Tekle",
+          "phoneNumber": "+251911111106",
+          "age": 0,
+          "statusByLogin": null,
+          "profilePicture": "http://res.cloudinary.com/dqy2ctugs/raw/upload/v1688115133/mteobaov9ac170lti8a1.png"
+        },
+        "accepted": true
+      },
+      {
+        "id": 15,
+        "origin": {
+          "latitude": 9.033933907204755,
+          "longitude": 38.76096180087135
+        },
+        "destination": {
+          "latitude": 9.0168305393388,
+          "longitude": 38.776260394810954
+        },
+        "originAddress": "Adwa st.",
+        "destinationAddress": "Adwa st.",
+        "currentFare": 30,
+        "status": 2,
+        "numberOfSeats": 1,
+        "user": {
+          "roles": [],
+          "fullName": "Zeritu Tsegaye",
+          "phoneNumber": "+251911111135",
+          "age": 0,
+          "statusByLogin": null,
+          "profilePicture": "http://res.cloudinary.com/dqy2ctugs/raw/upload/v1688115133/mteobaov9ac170lti8a1.png"
+        },
+        "accepted": true
+      },
+      {
+        "id": 18,
+        "origin": {
+          "latitude": 9.02128024268311,
+          "longitude": 38.765837010093314
+        },
+        "destination": {
+          "latitude": 9.010811122368025,
+          "longitude": 38.780020530892436
+        },
+        "originAddress": "Zewuditu St.",
+        "destinationAddress": "Hotel Tirago",
+        "currentFare": 35,
+        "status": 2,
+        "numberOfSeats": 1,
+        "user": {
+          "roles": [],
+          "fullName": "Mintesinot Alemayehu",
+          "phoneNumber": "+251911111130",
+          "age": 0,
+          "statusByLogin": null,
+          "profilePicture": "http://res.cloudinary.com/dqy2ctugs/raw/upload/v1688115133/mteobaov9ac170lti8a1.png"
+        },
+        "accepted": true
+      },
+      {
+        "id": 22,
+        "origin": {
+          "latitude": 9.035903240442103,
+          "longitude": 38.76190197250373
+        },
+        "destination": {
+          "latitude": 9.035235711209607,
+          "longitude": 38.76419794324873
+        },
+        "originAddress": "Romina Caffe",
+        "destinationAddress": "Minilik",
+        "currentFare": 40,
+        "status": 2,
+        "numberOfSeats": 1,
+        "user": {
+          "roles": [],
+          "fullName": "Abiy Mekonnen",
+          "phoneNumber": "+251911111121",
+          "age": 0,
+          "statusByLogin": null,
+          "profilePicture": "http://res.cloudinary.com/dqy2ctugs/raw/upload/v1688115133/mteobaov9ac170lti8a1.png"
+        },
+        "accepted": true
+      },
+      {
+        "id": 25,
+        "origin": {
+          "latitude": 9.033933907204755,
+          "longitude": 38.76096180087135
+        },
+        "destination": {
+          "latitude": 9.0168305393388,
+          "longitude": 38.776260394810954
+        },
+        "originAddress": "Adwa st.",
+        "destinationAddress": "Adwa st.",
+        "currentFare": 30,
+        "status": 2,
+        "numberOfSeats": 1,
+        "user": {
+          "roles": [],
+          "fullName": "Genet Assefa",
+          "phoneNumber": "+251911111119",
+          "age": 0,
+          "statusByLogin": null,
+          "profilePicture": "http://res.cloudinary.com/dqy2ctugs/raw/upload/v1688115133/mteobaov9ac170lti8a1.png"
+        },
+        "accepted": true
+      },
+      {
+        "id": 28,
+        "origin": {
+          "latitude": 9.02128024268311,
+          "longitude": 38.765837010093314
+        },
+        "destination": {
+          "latitude": 9.010811122368025,
+          "longitude": 38.780020530892436
+        },
+        "originAddress": "Zewuditu St.",
+        "destinationAddress": "Hotel Tirago",
+        "currentFare": 35,
+        "status": 2,
+        "numberOfSeats": 1,
+        "user": {
+          "roles": [],
+          "fullName": "Abiy Mekonnen",
+          "phoneNumber": "+251911111121",
+          "age": 0,
+          "statusByLogin": null,
+          "profilePicture": "http://res.cloudinary.com/dqy2ctugs/raw/upload/v1688115133/mteobaov9ac170lti8a1.png"
+        },
+        "accepted": true
+      }
+    ],
+    "errors": []
+  }

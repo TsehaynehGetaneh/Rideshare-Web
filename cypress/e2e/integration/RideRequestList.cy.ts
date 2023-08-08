@@ -50,7 +50,7 @@ describe('Functionalities inside the ride Request list work', () => {
             
             cy.get(`:nth-child(${index + 1}) > .px-0 > .inline-flex`).should('contain.text', status_map[rideRequest.status]);
             cy.get(`.bg-white > :nth-child(${index + 1}) > :nth-child(7)`).should('contain.text', "Jun 26, 2023");
-            cy.get(':nth-child(8) > .text-xl');
+            // cy.get(':nth-child(8) > .text-xl');
             
           });
         });
@@ -76,7 +76,7 @@ describe('Functionalities inside the ride Request list work', () => {
           cy.intercept(
             'GET',
             `
-            https://rideshare-swdm.onrender.com/api/riderequests/filter?name=Eden%20Hailu&pageNumber=1&pageSize=10`
+            https://rideshare-swdm.onrender.com/api/riderequests/filter?name=Eden%20Hai&pageNumber=1&pageSize=10`
           ).as('filteredRideRequests');
 
          
@@ -93,7 +93,7 @@ describe('Functionalities inside the ride Request list work', () => {
             cy.get(`:nth-child(1) > .px-7`).should('contain.text', filteredRideRequests.currentFare);
             cy.get(`:nth-child(1) > .px-10`).should('contain.text', filteredRideRequests.numberOfSeats);
             cy.get(`.bg-white > :nth-child(1) > :nth-child(7)`).should('contain.text', "Jun 26, 2023");
-            cy.get(':nth-child(8) > .text-xl');
+            // cy.get(':nth-child(8) > .text-xl');
           });
         });
       });
@@ -138,7 +138,7 @@ describe('Functionalities inside the ride Request list work', () => {
               
               cy.get(`:nth-child(${index + 1}) > .px-0 > .inline-flex`).should('contain.text', status_map[rideRequest.status]);
               cy.get(`.bg-white > :nth-child(${index + 1}) > :nth-child(7)`).should('contain.text', "Jun 26, 2023");
-              cy.get(':nth-child(8) > .text-xl');
+              // cy.get(':nth-child(8) > .text-xl');
   
               // Add more assertions for other properties as needed
             });

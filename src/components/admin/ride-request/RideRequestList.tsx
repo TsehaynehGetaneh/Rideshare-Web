@@ -123,10 +123,10 @@ const RideRequestList = () => {
         />
       ) : rideRequests.length > 0 ? (
         <div>
-          <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <div data-testid="ride-request-section" className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
               <div className="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
-                <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                <table data-testid="ride-request-table" className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                   <thead className="bg-gray-50 dark:bg-gray-800">
                     <tr>
                       <th
@@ -198,7 +198,7 @@ const RideRequestList = () => {
                     </tr>
                   </thead>
 
-                  <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
+                  <tbody data-testid = "ride-redquest-body" className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
                     {Array.isArray(rideRequests) &&
                       rideRequests.map((rideRequest: any) => (
                         <RideRequestItem
@@ -229,9 +229,7 @@ const RideRequestList = () => {
         <div className="flex flex-col items-center gap-5 p-3 mt-16">
           <MdFilterAltOff size={100} className="text-gray-400" />
           {skipFilter ? (
-            <div className="pb-16 text-lg text-center text-gray-500">
-              There are no Ride Requests
-            </div>
+            <div className="pb-16 text-lg text-center text-gray-500">There are no Ride Requests</div>
           ) : (
             <div className="pb-16 text-lg text-center text-gray-500">
               There are no matching results

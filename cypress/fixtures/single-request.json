@@ -1,0 +1,35 @@
+{
+    "pageNumber": 1,
+    "pageSize": 10,
+    "count": 1,
+    "success": true,
+    "message": "Fetch Successful",
+    "value": [
+      {
+        "id": 3,
+        "origin": {
+          "latitude": 9.035235711209607,
+          "longitude": 38.76419794324873
+        },
+        "destination": {
+          "latitude": 9.040918717359784,
+          "longitude": 38.779318352747055
+        },
+        "originAddress": "Minilik",
+        "destinationAddress": "German Embassy",
+        "currentFare": 35,
+        "status": 3,
+        "numberOfSeats": 1,
+        "user": {
+          "roles": [],
+          "fullName": "Eden Hailu",
+          "phoneNumber": "+251911111112",
+          "age": 0,
+          "statusByLogin": null,
+          "profilePicture": "http://res.cloudinary.com/dqy2ctugs/raw/upload/v1688115133/mteobaov9ac170lti8a1.png"
+        },
+        "accepted": false
+      }
+    ],
+    "errors": []
+  }
