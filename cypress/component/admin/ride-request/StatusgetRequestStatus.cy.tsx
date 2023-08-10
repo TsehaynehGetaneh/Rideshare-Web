@@ -1,5 +1,5 @@
 import React from 'react'
-import { getRequestStatus } from './Status'
+import { getRequestStatus } from '../../../../src/components/admin/ride-request/Status'
 import { mount } from 'cypress/react18';
 
 
