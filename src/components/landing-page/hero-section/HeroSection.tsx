@@ -13,9 +13,10 @@ const HeroSection = (props: Props) => {
         <div className="text-center font-bold text-4xl">
           Ride<span className="text-primary">Share</span>
         </div>
-        <div className="max-w-md text-xl p-2">
-          A platform to make your life easier lorem. A platform to make your
-          life easier, enjoy a safe and comfortable ride every time
+        <div className="max-w-md text-xl p-2 text-center">
+          Welcome to Ride<span className = "text-primary">Share</span>, where convenience meets efficiency! Say goodbye
+          to the hassle of commuting and experience a seamless and reliable
+          ride-sharing service.
         </div>
         <div className="flex gap-5 mx-auto p-2">
           <button className="flex gap-5 w-48 h-16 items-center justify-center bg-black rounded-xl">
