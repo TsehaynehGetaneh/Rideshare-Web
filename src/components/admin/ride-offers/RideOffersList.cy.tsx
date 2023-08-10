@@ -16,7 +16,7 @@ describe("RideOffersList", () => {
           req.reply((res) => {
             const authToken = res.body.value.accessToken;
             Cypress.env("authToken", authToken);
-            res.send({}); // Optional: You can send an empty response or modify it as needed
+            res.send({}); 
           });
         }
       }
