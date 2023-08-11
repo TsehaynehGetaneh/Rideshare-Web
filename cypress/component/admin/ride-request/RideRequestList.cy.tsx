@@ -93,6 +93,7 @@ describe("RideRequestList", () => {
   it("displays the ride Requests filtered by user name", () => {
     cy.get("#default-search").should("be.visible");
     cy.get("#default-search").type("Eden Hailu");
+    cy.wait(5000);
     cy.get("thead").find("th").its("length").should("eq", 8);
     cy.get("tbody").find("tr").should("have.length", 1);
     cy.contains("Eden Hailu").should("be.visible");
@@ -101,6 +102,7 @@ describe("RideRequestList", () => {
   it("displays the ride Requests filtered by fare", () => {
     cy.get("#default-search").should("be.visible");
     cy.get("#default-search").type("30");
+    cy.wait(5000);
     cy.get("thead").find("th").its("length").should("eq", 8);
     cy.get("tbody").find("tr").should("have.length", 6);
     cy.contains(30).should("be.visible");
@@ -108,6 +110,7 @@ describe("RideRequestList", () => {
   it("displayed ride requests filtered by status", () => {
     cy.get("#role").should("be.visible");
     cy.get("#role").select("Completed");
+    cy.wait(5000);
     cy.get("thead").find("th").its("length").should("eq", 8);
     cy.get("tbody").find("tr").should("have.length", 8);
     cy.contains("Completed").should("be.visible");
