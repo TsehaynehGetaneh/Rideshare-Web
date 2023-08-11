@@ -16,7 +16,7 @@ describe("RideOffersList", () => {
           req.reply((res) => {
             const authToken = res.body.value.accessToken;
             Cypress.env("authToken", authToken);
-            res.send({}); 
+            res.send({});
           });
         }
       }
@@ -47,6 +47,7 @@ describe("RideOffersList", () => {
     cy.fixture("admin/ride-offers/ride-offers.json").then((rideOffers) => {
       const offers = rideOffers.value;
       offers.forEach((rideOffers: any, index: number) => {
+        cy.wait(5000);
         cy.get(`:nth-child(${index + 1}) > .text-gray-700`).should(
           "contain.text",
           rideOffers.driver.user.fullName
