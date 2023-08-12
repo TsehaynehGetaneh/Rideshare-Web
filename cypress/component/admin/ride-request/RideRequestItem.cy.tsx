@@ -1,8 +1,8 @@
 import React from 'react'
-import RideRequestItem from './RideRequestItem'
-import { getRequestStatus } from './Status'
+import RideRequestItem from '../../../../src/components/admin/ride-request/RideRequestItem'
+import { getRequestStatus } from '../../../../src/components/admin/ride-request/Status'
 import { mount } from 'cypress/react18'
-import {status_map} from './Status';
+import {status_map} from '../../../../src/components/admin/ride-request/Status';
 
 
 

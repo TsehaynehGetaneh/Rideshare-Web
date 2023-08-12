@@ -1,5 +1,5 @@
 import React from 'react'
-import { getRequestStatus } from './Status'
+import { getRequestStatus } from '../../../../src/components/admin/ride-request/Status'
 import { mount } from 'cypress/react18';
 
 
@@ -10,7 +10,7 @@ describe('getRequestStatus Function', () => {
     1: "OnRoute",
     2: "Completed",
     3: "Canceled",
-    4: "None",
+    4: "All",
   };
 
   Object.entries(status_map).forEach(([status, statusText]) => {

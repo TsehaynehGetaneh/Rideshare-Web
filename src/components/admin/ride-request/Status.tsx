@@ -1,9 +1,15 @@
-export const status_map = {
+export const status_map : {[key: number]: string } = {
   0: "Waiting",
   1: "OnRoute",
   2: "Completed",
   3: "Canceled",
-  4: "None",
+};
+
+export const reverse_map : {[key: string]: number } = {
+  "Waiting": 0,
+  "OnRoute": 1,
+  "Completed" : 2,
+  "Canceled" : 3,
 };
 export function getRequestStatus(status: number) {
   switch (status) {
@@ -33,7 +39,7 @@ export function getRequestStatus(status: number) {
       );
     case 3:
       return (
-        <div className="inline-flex items-center px-3 py-2 rounded-full gap-x-2 bg-red-100 dark:bg-gray-800 ml-2">
+        <div className="inline-flex items-center px-3 py-2 ml-2 bg-red-100 rounded-full gap-x-2 dark:bg-gray-800">
           <h2 className="text-sm font-normal text-red-500">
             {status_map[3].charAt(0).toUpperCase() + status_map[3].slice(1)}
           </h2>
@@ -41,8 +47,8 @@ export function getRequestStatus(status: number) {
       );
     default:
       return (
-        <span className="capitalize py-1 px-2 rounded-md text-xs text-gray-600 bg-gray-100">
-          {status_map[4].replaceAll("_", " ").toLowerCase()}
+        <span className="px-2 py-1 text-xs text-gray-600 capitalize bg-gray-100 rounded-md">
+          All
         </span>
       );
   }

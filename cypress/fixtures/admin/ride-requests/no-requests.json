@@ -1,0 +1,11 @@
+{
+    "pageNumber": 1,
+    "pageSize": 10,
+    "count": 0,
+    "success": true,
+    "message": "Get Successful",
+    "value": [
+        
+    ],
+    "errors": []
+}

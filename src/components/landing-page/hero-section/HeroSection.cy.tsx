@@ -8,7 +8,7 @@ describe("<HeroSection />", () => {
   it("should render the text content correctly", () => {
     cy.contains("Ride").should("exist");
     cy.contains("Share").should("exist");
-    cy.contains("A platform to make your life easier").should("exist");
+    cy.contains("Welcome to RideShare").should("exist");
     cy.contains("Google Play").should("exist");
     cy.contains("Apple Store").should("exist");
   });

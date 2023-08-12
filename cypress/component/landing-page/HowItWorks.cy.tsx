@@ -1,5 +1,5 @@
 import { Steps } from "@/types/steps";
-import HowItWorks from "./HowItWorks";
+import HowItWorks from "../../../src/components/landing-page/how-it-works/HowItWorks";
 
 describe("HowItWorks", () => {
   beforeEach(() => {

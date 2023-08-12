@@ -16,5 +16,5 @@ export interface RideRequestFilter {
     size:number,
     name?:string,
     fare?:number,
-    status?:string | null,
+    status?:number 
 }
