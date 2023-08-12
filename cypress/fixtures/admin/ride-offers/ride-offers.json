@@ -1,0 +1,300 @@
+{
+    "pageNumber": 1,
+    "pageSize": 10,
+    "count": 26,
+    "success": true,
+    "message": "RideOffers Fetching Successful",
+    "value": [
+      {
+        "id": 20,
+        "driver": {
+          "id": 10,
+          "userId": "1234e56f-7890-4c1d-23e4-123456789012",
+          "user": {
+            "roles": [],
+            "fullName": "Solomon Wondimu",
+            "phoneNumber": "+251911111113",
+            "age": 0,
+            "statusByLogin": null,
+            "profilePicture": "http://res.cloudinary.com/dqy2ctugs/raw/upload/v1688115133/mteobaov9ac170lti8a1.png"
+          },
+          "rate": [
+            0,
+            0,
+            0
+          ],
+          "experience": 4,
+          "address": "Arat Kilo, Addis Ababa",
+          "licenseNumber": "MNO123456",
+          "license": "http://res.cloudinary.com/dqy2ctugs/raw/upload/v1688116035/sax8xmpkspofh7s9iai5.png",
+          "verified": true
+        },
+        "originAddress": "Romina Caffe",
+        "destinationAddress": "Minilik",
+        "status": "ONROUTE",
+        "availableSeats": 2
+      },
+      {
+        "id": 22,
+        "driver": {
+          "id": 2,
+          "userId": "2e4c2829-138d-4e7e-b023-123456789104",
+          "user": {
+            "roles": [],
+            "fullName": "Melkamu Yibeltal",
+            "phoneNumber": "+251966666667",
+            "age": 0,
+            "statusByLogin": null,
+            "profilePicture": "http://res.cloudinary.com/dqy2ctugs/raw/upload/v1688115133/mteobaov9ac170lti8a1.png"
+          },
+          "rate": [
+            0,
+            0,
+            0
+          ],
+          "experience": 2,
+          "address": "Arat kilo",
+          "licenseNumber": "87654321",
+          "license": "http://res.cloudinary.com/dqy2ctugs/raw/upload/v1688116035/sax8xmpkspofh7s9iai5.png",
+          "verified": false
+        },
+        "originAddress": "German Embassy",
+        "destinationAddress": "Adwa st.",
+        "status": "COMPLETED",
+        "availableSeats": 2
+      },
+      {
+        "id": 24,
+        "driver": {
+          "id": 4,
+          "userId": "2e4c2829-138d-4e7e-b023-123456789102",
+          "user": {
+            "roles": [],
+            "fullName": "Kalu Siyum",
+            "phoneNumber": "+251944444444",
+            "age": 0,
+            "statusByLogin": null,
+            "profilePicture": "http://res.cloudinary.com/dqy2ctugs/raw/upload/v1688115133/mteobaov9ac170lti8a1.png"
+          },
+          "rate": [
+            0,
+            0,
+            0
+          ],
+          "experience": 1.2,
+          "address": "Nazrit",
+          "licenseNumber": "23456789",
+          "license": "http://res.cloudinary.com/dqy2ctugs/raw/upload/v1688116035/sax8xmpkspofh7s9iai5.png",
+          "verified": false
+        },
+        "originAddress": "Adwa st.",
+        "destinationAddress": "Kazanchis",
+        "status": "ONROUTE",
+        "availableSeats": 4
+      },
+      {
+        "id": 18,
+        "driver": {
+          "id": 8,
+          "userId": "012d3aef-4b56-471c-86d9-123456789004",
+          "user": {
+            "roles": [],
+            "fullName": "Bruk Assefa",
+            "phoneNumber": "+251911111105",
+            "age": 0,
+            "statusByLogin": null,
+            "profilePicture": "http://res.cloudinary.com/dqy2ctugs/raw/upload/v1688115133/mteobaov9ac170lti8a1.png"
+          },
+          "rate": [
+            0,
+            0,
+            0
+          ],
+          "experience": 2,
+          "address": "Merkato, Addis Ababa",
+          "licenseNumber": "GHI123456",
+          "license": "http://res.cloudinary.com/dqy2ctugs/raw/upload/v1688116035/sax8xmpkspofh7s9iai5.png",
+          "verified": true
+        },
+        "originAddress": "Signal Condominum",
+        "destinationAddress": "Arat Kilo",
+        "status": "COMPLETED",
+        "availableSeats": 4
+      },
+      {
+        "id": 5,
+        "driver": {
+          "id": 5,
+          "userId": "2e4c2829-138d-4e7e-b023-123456789101",
+          "user": {
+            "roles": [],
+            "fullName": "Siyum Anammo",
+            "phoneNumber": "+251933333333",
+            "age": 0,
+            "statusByLogin": null,
+            "profilePicture": "http://res.cloudinary.com/dqy2ctugs/raw/upload/v1688115133/mteobaov9ac170lti8a1.png"
+          },
+          "rate": [
+            0,
+            0,
+            0
+          ],
+          "experience": 5,
+          "address": "Weraileu",
+          "licenseNumber": "98765432",
+          "license": "http://res.cloudinary.com/dqy2ctugs/raw/upload/v1688116035/sax8xmpkspofh7s9iai5.png",
+          "verified": true
+        },
+        "originAddress": "Adwa st.",
+        "destinationAddress": "Adwa st.",
+        "status": "WAITING",
+        "availableSeats": 1
+      },
+      {
+        "id": 13,
+        "driver": {
+          "id": 3,
+          "userId": "2e4c2829-138d-4e7e-b023-123456789103",
+          "user": {
+            "roles": [],
+            "fullName": "Aster Nesu",
+            "phoneNumber": "+251955555556",
+            "age": 0,
+            "statusByLogin": null,
+            "profilePicture": "http://res.cloudinary.com/dqy2ctugs/raw/upload/v1688115133/mteobaov9ac170lti8a1.png"
+          },
+          "rate": [
+            0,
+            0,
+            0
+          ],
+          "experience": 4.8,
+          "address": "Debrezeyit",
+          "licenseNumber": "98765432",
+          "license": "http://res.cloudinary.com/dqy2ctugs/raw/upload/v1688116035/sax8xmpkspofh7s9iai5.png",
+          "verified": true
+        },
+        "originAddress": "Adwa st.",
+        "destinationAddress": "Adwa st.",
+        "status": "WAITING",
+        "availableSeats": 1
+      },
+      {
+        "id": 8,
+        "driver": {
+          "id": 8,
+          "userId": "012d3aef-4b56-471c-86d9-123456789004",
+          "user": {
+            "roles": [],
+            "fullName": "Bruk Assefa",
+            "phoneNumber": "+251911111105",
+            "age": 0,
+            "statusByLogin": null,
+            "profilePicture": "http://res.cloudinary.com/dqy2ctugs/raw/upload/v1688115133/mteobaov9ac170lti8a1.png"
+          },
+          "rate": [
+            0,
+            0,
+            0
+          ],
+          "experience": 2,
+          "address": "Merkato, Addis Ababa",
+          "licenseNumber": "GHI123456",
+          "license": "http://res.cloudinary.com/dqy2ctugs/raw/upload/v1688116035/sax8xmpkspofh7s9iai5.png",
+          "verified": true
+        },
+        "originAddress": "Zewuditu St.",
+        "destinationAddress": "Zewuditu St.",
+        "status": "ONROUTE",
+        "availableSeats": 3
+      },
+      {
+        "id": 4,
+        "driver": {
+          "id": 4,
+          "userId": "2e4c2829-138d-4e7e-b023-123456789102",
+          "user": {
+            "roles": [],
+            "fullName": "Kalu Siyum",
+            "phoneNumber": "+251944444444",
+            "age": 0,
+            "statusByLogin": null,
+            "profilePicture": "http://res.cloudinary.com/dqy2ctugs/raw/upload/v1688115133/mteobaov9ac170lti8a1.png"
+          },
+          "rate": [
+            0,
+            0,
+            0
+          ],
+          "experience": 1.2,
+          "address": "Nazrit",
+          "licenseNumber": "23456789",
+          "license": "http://res.cloudinary.com/dqy2ctugs/raw/upload/v1688116035/sax8xmpkspofh7s9iai5.png",
+          "verified": false
+        },
+        "originAddress": "German Embassy",
+        "destinationAddress": "German Embassy",
+        "status": "ONROUTE",
+        "availableSeats": 3
+      },
+      {
+        "id": 9,
+        "driver": {
+          "id": 9,
+          "userId": "12b3c4d5-67e8-490f-1a2b-123456789008",
+          "user": {
+            "roles": [],
+            "fullName": "Hirut Mengiste",
+            "phoneNumber": "+251911111109",
+            "age": 0,
+            "statusByLogin": null,
+            "profilePicture": "http://res.cloudinary.com/dqy2ctugs/raw/upload/v1688115133/mteobaov9ac170lti8a1.png"
+          },
+          "rate": [
+            0,
+            0,
+            0
+          ],
+          "experience": 3,
+          "address": "Kirkos Subcity, Woreda 04, Addis Ababa",
+          "licenseNumber": "JKL123456",
+          "license": "http://res.cloudinary.com/dqy2ctugs/raw/upload/v1688116035/sax8xmpkspofh7s9iai5.png",
+          "verified": false
+        },
+        "originAddress": "Hotel Tirago",
+        "destinationAddress": "Hotel Tirago",
+        "status": "WAITING",
+        "availableSeats": 2
+      },
+      {
+        "id": 11,
+        "driver": {
+          "id": 1,
+          "userId": "2e4c2829-138d-4e7e-b023-123456789105",
+          "user": {
+            "roles": [],
+            "fullName": "Nurilgn Beyene",
+            "phoneNumber": "+251933737377",
+            "age": 0,
+            "statusByLogin": null,
+            "profilePicture": "http://res.cloudinary.com/dqy2ctugs/raw/upload/v1688115133/mteobaov9ac170lti8a1.png"
+          },
+          "rate": [
+            0,
+            0,
+            0
+          ],
+          "experience": 3.5,
+          "address": "Lafto",
+          "licenseNumber": "12345678",
+          "license": "http://res.cloudinary.com/dqy2ctugs/raw/upload/v1688116035/sax8xmpkspofh7s9iai5.png",
+          "verified": true
+        },
+        "originAddress": "Minilik",
+        "destinationAddress": "German Embassy",
+        "status": "CANCELLED",
+        "availableSeats": 3
+      }
+    ],
+    "errors": []
+  }
