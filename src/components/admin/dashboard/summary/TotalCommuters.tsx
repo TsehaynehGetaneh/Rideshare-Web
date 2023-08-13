@@ -4,9 +4,9 @@ import { AiOutlineUser } from 'react-icons/ai'
 import Card from '../Card'
 import { PercentageChange } from '@/types/stat'
 
-type Props = {}
 
-const TotalCommuters = (props: Props) => {
+
+const TotalCommuters = () => {
     const { data, isLoading } = useGetTotalCommutersQuery()
   return (
     <div>
