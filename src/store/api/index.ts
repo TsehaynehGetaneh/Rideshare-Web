@@ -58,25 +58,25 @@ export const apiSlice = createApi({
       },
     }),
     getTopDrivers: builder.query<TopDrivers[], void>({
-      query: () => `RideOffers/TopFiveDrivers`,
+      query: () => `statistics/drivers/top-five`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
         return baseQueryReturnValue.value;
       },
     }),
     getDriverStatusStat: builder.query<number[], void>({
-      query: () => `Driver/status`,
+      query: () => ` statistics/drivers/status-count`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
         return baseQueryReturnValue.value;
       },
     }),
     getCommutersStat: builder.query<VerticalBarChartData, TimeFrame>({
       query: ({ year, month, option }) =>
-        `Commuter/commuter-count?option=${option}${
+        `statistics/commuters/time-series?option=${option}${
           year ? "&year=" + year : ""
         }${month ? "&month=" + month : ""}`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
         const [xAxisData, yAxisData] = getObjectKeysAndValues(
-          baseQueryReturnValue.value.monthlyCounts
+          baseQueryReturnValue.value
         );
         return {
           xAxisData: xAxisData as string[],
@@ -88,7 +88,7 @@ export const apiSlice = createApi({
       { statuses: string[]; count: number[] },
       void
     >({
-      query: () => `Commuter/commuter-status`,
+      query: () => `statistics/commuters/status-count`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
         const [statuses, count] = getObjectKeysAndValues(
           baseQueryReturnValue.value
@@ -97,14 +97,14 @@ export const apiSlice = createApi({
       },
     }),
     getTopCommuters: builder.query<number[], void>({
-      query: () => `User/Top5Commuter`,
+      query: () => `statistics/commuters/top-five`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
         return baseQueryReturnValue.value;
       },
     }),
     getVehicleStat: builder.query<VerticalBarChartData, TimeFrame>({
       query: ({ year, month, option }) =>
-        `Vehicles/NumberOfVehicle?option=${option}${
+        `statistics/vehicles/time-series?option=${option}${
           year ? "&year=" + year : ""
         }${month ? "&month=" + month : ""}`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
@@ -118,7 +118,7 @@ export const apiSlice = createApi({
       },
     }),
     getTopVehiclesStat: builder.query<TopVehicles[], void>({
-      query: () => `RideOffers/NoRideOfferForTop10Model`,
+      query: () => ` statistics/rideoffers/top-ten-model-count`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
         return baseQueryReturnValue.value;
       },
@@ -130,7 +130,7 @@ export const apiSlice = createApi({
       },
     }),
     getTotalCommuters: builder.query<PercentageChange, void>({
-      query: () => `User/statstics/week`,
+      query: () => `statstics/week/percentage-change`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
         return baseQueryReturnValue.value;
       },
@@ -149,7 +149,7 @@ export const apiSlice = createApi({
       },
     }),
     getTotalSummary: builder.query<PercentageChange[], void>({
-      query: () => `Statistics/Week/PercentageChange`,
+      query: () => `statistics/week/percentage-change`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
         return baseQueryReturnValue.value;
       },
@@ -190,7 +190,7 @@ export const apiSlice = createApi({
     }),
     getRideOfferStat: builder.query<VerticalBarChartData, TimeFrame>({
       query: ({ year, month, option }) =>
-        `RideOffers/Statistics?options=${option}${year ? "&Year=" + year : ""}${
+        `statistics/rideoffers/status-count?options=${option}${year ? "&Year=" + year : ""}${
           month ? "&Month=" + month : ""
         }`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
@@ -207,7 +207,7 @@ export const apiSlice = createApi({
       { statuses: string[]; count: number[] },
       void
     >({
-      query: () => `RideOffers/Statistics/Status/Count`,
+      query: () => `statistics/rideoffers/status-count`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
         const [statuses, count] = getObjectKeysAndValues(
           baseQueryReturnValue.value
@@ -220,7 +220,7 @@ export const apiSlice = createApi({
       TimeFrame
     >({
       query: ({ year, month, option }) =>
-        `RideOffers/Statistics/Status?options=${option}${
+        `statistics/rideoffers/time-series-for-each-status?timeframe=${option}${
           year ? "&Year=" + year : ""
         }${month ? "&Month=" + month : ""}`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
@@ -244,7 +244,7 @@ export const apiSlice = createApi({
     }),
     getRideRequestsStat: builder.query<VerticalBarChartData, TimeFrame>({
       query: ({ year, month, option }) =>
-        `RideRequest/Statstics?type=${option}${year ? "&year=" + year : ""}${
+        `statistics/riderequests/status-count?type=${option}${year ? "&year=" + year : ""}${
           month ? "&month=" + month : ""
         }`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
@@ -258,7 +258,7 @@ export const apiSlice = createApi({
       },
     }),
     getRideRequestsStatusStat: builder.query<number[], void>({
-      query: () => `RideRequests/status/statstics`,
+      query: () => `statistics/riderequests/time-series`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
         return baseQueryReturnValue.value;
       },
@@ -267,7 +267,7 @@ export const apiSlice = createApi({
       { statuses: string[]; count: number[] },
       void
     >({
-      query: () => `RideRequest/AllStatus/Statstics`,
+      query: () => `statistics/riderequests/status-count`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
         const [statuses, count] = getObjectKeysAndValues(
           baseQueryReturnValue.value
@@ -280,7 +280,7 @@ export const apiSlice = createApi({
       TimeFrame
     >({
       query: ({ year, month, option }) =>
-        `RideRequest/status/statstics?type=${option}${
+        `statistics/riderequests/time-series-for-each-status?timeframe=${option}${
           year ? "&year=" + year : ""
         }${month ? "&month=" + month : ""}`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
