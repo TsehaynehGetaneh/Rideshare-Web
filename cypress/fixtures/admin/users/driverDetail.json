@@ -1,0 +1,27 @@
+{
+    "success": true,
+    "message": "Fetch Successful",
+    "value": {
+      "id": 10,
+      "userId": "1234e56f-7890-4c1d-23e4-123456789012",
+      "user": {
+        "roles": [],
+        "fullName": "Solomon Wondimu",
+        "phoneNumber": "+251911111113",
+        "age": 0,
+        "statusByLogin": null,
+        "profilePicture": "/images/admin/admin-profile.jpg"
+      },
+      "rate": [
+        0,
+        0,
+        0
+      ],
+      "experience": 5,
+      "address": "Arat Kilo, Addis Ababa",
+      "licenseNumber": "MNO123456",
+      "license": "/images/admin/admin-profile.jpg",
+      "verified": true
+    },
+    "errors": []
+  }

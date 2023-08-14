@@ -1,0 +1,18 @@
+{
+  "success": true,
+  "message": "Fetched In Successfully",
+  "value": {
+    "roles": [
+      {
+        "id": "ccfe7966-71d4-4bc7-932d-d87d1edfb7b2",
+        "name": "Commuter"
+      }
+    ],
+    "fullName": "Tsehayneh Getaneh",
+    "phoneNumber": "+251911111108",
+    "age": 0,
+    "statusByLogin": "INACTIVE",
+    "profilePicture": ""
+  },
+  "errors": []
+}

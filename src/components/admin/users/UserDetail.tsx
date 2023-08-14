@@ -50,16 +50,17 @@ const UserDetail = ({ id }: UserDetailProps) => {
         <div className="flex gap-4 items-center">
           <div
             className={`text-2xl text-white font-semibold ${roleColors.get(role)}  rounded-full px-5 py-1`}
+            data-cy="role"
           >
             {role.charAt(0).toUpperCase() + role.slice(1)}
           </div>
         </div>
       </div>
       <div className="w-96 bg-gray-100 space-y-3 rounded-2xl p-8">
-        <div className="text-2xl font-semibold">Account Detail</div>
+        <div data-cy="account-detail" className="text-2xl font-semibold">Account Detail</div>
         {data && <div className="flex gap-4 items-center">
           <FaUserAlt size={20} className="text-primary" />
-          <div className="font-semibold text-lg">{data.fullName}</div>
+          <div data-cy="username" className="font-semibold text-lg">{data.fullName}</div>
         </div>}
         {data && role === 'Admin' &&
           <div className="flex gap-4 items-center">
@@ -69,7 +70,7 @@ const UserDetail = ({ id }: UserDetailProps) => {
         {data && 
         <div className="flex gap-4 items-center">
           <FaPhoneAlt size={20} className="text-primary" />
-          <div className="font-semibold text-lg">{data.phoneNumber}</div>
+          <div data-cy="phone-number" className="font-semibold text-lg">{data.phoneNumber}</div>
         </div>}
           {data && 
           <div className="flex gap-4 items-center">
@@ -79,6 +80,7 @@ const UserDetail = ({ id }: UserDetailProps) => {
             />
             <div
               className={`${statusColors.get(status)?.color} font-bold bg-opacity-20 rounded-full px-5 py-1`}
+              data-cy="status"
             >
               {status.charAt(0) + status.slice(1).toLowerCase()}
             </div>

@@ -16,19 +16,20 @@ const CommuterFeedback: React.FC<FeedbackProps> = ({ feedback }) => {
   return (
     <div className="max-w-2xl px-8 py-4 bg-white rounded-lg shadow-md dark:bg-gray-800 mt-8 ml-16">
       <div className="flex items-center justify-between">
-        <span className="text-sm font-light text-gray-600 dark:text-gray-400">
+        <span data-cy="feedback-date" className="text-sm font-light text-gray-600 dark:text-gray-400">
           {feedback.dateCreated}
         </span>
       </div>
 
       <div className="mt-2">
         <a
+          data-cy="feedback-title"
           href="#"
           className="text-xl font-bold text-gray-700 dark:text-white hover:text-gray-600 dark:hover:text-gray-200 hover:underline"
         >
           {feedback.title}
         </a>
-        <p className="mt-2 text-gray-600 dark:text-gray-300">{feedback.content}</p>
+        <p data-cy="feedback-content" className="mt-2 text-gray-600 dark:text-gray-300">{feedback.content}</p>
       </div>
       <div className="flex mt-5  mb-5items-center">
         <FaStar className="w-5 h-5 text-yellow-500" />
@@ -55,7 +56,7 @@ const CommuterFeedbacks = (props: CommuterFeedbacksProps) => {
   
   return (
     <div className="max-w-3xl">
-        <h1 className="text-3xl font-semibold mx-16 mb-4">Feedbacks</h1>
+        <h1 data-cy="feedback-text" className="text-3xl font-semibold mx-16 mb-4">Feedbacks</h1>
         {isLoading || isFetching ? 
         <div className="flex w-full h-96">
           <ClipLoader color="indigo" className="mx-auto mt-24" size={40} />
@@ -84,7 +85,7 @@ const CommuterFeedbacks = (props: CommuterFeedbacksProps) => {
         }
        {!isError && data && data.feedbacks &&
         <div className="flex items-center justify-center mt-8 mx-auto">
-          <button className="px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-primary rounded-lg hover:bg-primary focus:outline-none focus:ring focus:ring-primary focus:ring-opacity-80" onClick={handleViewMore}>
+          <button data-cy="btn" className="px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-primary rounded-lg hover:bg-primary focus:outline-none focus:ring focus:ring-primary focus:ring-opacity-80" onClick={handleViewMore}>
             View More
           </button>
         </div>}
