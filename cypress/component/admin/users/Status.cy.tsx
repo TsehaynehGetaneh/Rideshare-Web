@@ -1,4 +1,4 @@
-import Status from "./Status";
+import Status from "@/components/admin/users/Status";
 
 describe("Status component", () => {
   it("renders with active status", () => {

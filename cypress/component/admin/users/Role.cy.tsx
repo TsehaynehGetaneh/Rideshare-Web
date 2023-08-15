@@ -1,4 +1,4 @@
-import Role from './Role';
+import Role from "@/components/admin/users/Role";
 
 describe('Role component', () => {
   it('renders Commuter role with default textSize', () => {

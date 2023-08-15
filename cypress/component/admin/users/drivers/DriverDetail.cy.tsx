@@ -1,6 +1,6 @@
 import { Provider } from "react-redux";
-import DriverDetail from "../../../../../src/components/admin/users/drivers/DriverDetail";
 import { store } from "@/store/store";
+import DriverDetail from "@/components/admin/users/drivers/DriverDetail";
 
 describe("DriverDetail Component", () => {
     beforeEach(() => {

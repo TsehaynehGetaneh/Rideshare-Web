@@ -1,5 +1,5 @@
+import BenefitsSection from "@/components/landing-page/benefits-section/BenefitsSection";
 import React from "react";
-import BenefitsSection from "./BenefitsSection";
 
 describe("<BenefitsSection />", () => {
   beforeEach(() => {

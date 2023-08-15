@@ -1,7 +1,7 @@
 import React from "react";
-import Layout from "./Layout";
 import { Provider } from "react-redux";
 import { store } from "@/store/store";
+import Layout from "@/components/common/Layout";
 
 describe("<Layout />", () => {
   beforeEach(() => {
