@@ -27,14 +27,14 @@ const Card = ({
       <div className="text-primary  p-3 bg-primary bg-opacity-20 rounded-full w-fit">
         {Icon && <Icon size={20} />}
       </div>
-      <div className="text-2xl font-bold">{Item?.currentCount.toLocaleString()}</div>
+      <div className="text-2xl font-bold">{Item?.currentCount ? Item.currentCount.toLocaleString() : ''}</div>
       <div className="flex justify-between gap-5">
         <div className="text-xs">Total {names.get(Item?.name)}</div>
         <div
           className={`flex items-center text-green-500 text-red-500"`}
         >
             <MdArrowDropUp size={20} />
-          <div className="text-sm">{Item?.percentageChange.toFixed()}%</div>
+            <div className="text-sm">{(Item?.percentageChange || 0).toFixed()}%</div>
         </div>
       </div>
     </div>

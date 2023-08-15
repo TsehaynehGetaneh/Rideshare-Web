@@ -15,7 +15,8 @@ const RideRequestOvertimeStatusAnalytics = (props: Props) => {
   const { data, isLoading,isFetching, isError, refetch } =
     useGetRideRequestOverTimeStatusStatQuery({year:year, month:month, option:interval as Interval});
   const noFailedData = data?.failed.yAxisData.reduce((prev, cur) => prev + cur, 0) === 0
-  const noCompletedData = data?.failed.yAxisData.reduce((prev, cur) => prev + cur, 0) === 0
+  const noCompletedData = data?.completed.yAxisData.reduce((prev, cur) => prev + cur, 0) === 0
+  
   return (
     <div>
       <OvertimeStatusAnalytics

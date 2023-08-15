@@ -9,7 +9,6 @@ import Card from "@/components/admin/dashboard/Card";
 import { AiOutlineUser } from "react-icons/ai";
 import { FaCar } from "react-icons/fa";
 import { MdOutlineLocalOffer, MdOutlineRequestPage } from "react-icons/md";
-import TotalCommuters from "@/components/admin/dashboard/summary/TotalCommuters";
 import TopCommuters from "@/components/admin/dashboard/Commuters/TopCommuters";
 import TotalSummary from "@/components/admin/dashboard/summary/TotalSummary";
 
@@ -29,7 +28,6 @@ const Dashboard = (props: DashboardProps) => {
           </div>
         </div>
         <div className="flex flex-wrap gap-3">
-          <TotalCommuters />
           <TotalSummary />
         </div>
       </div>
