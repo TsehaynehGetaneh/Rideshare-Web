@@ -17,7 +17,7 @@ const icons = new Map([
 
 const TotalSummary = (props: Props) => {
   const { data, isLoading } = useGetTotalSummaryQuery();
-  console.log(data) 
+   
   return (
     <>
         {
