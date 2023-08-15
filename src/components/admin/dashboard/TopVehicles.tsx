@@ -1,5 +1,5 @@
 import BarChart from "@/components/common/admin/charts/BarChart";
-import { useGetTopVehiclesStatQuery } from "@/store/api";
+import { useGetTopVehiclesByOfferStatQuery } from "@/store/api";
 import NoBarStatistics from "@/components/common/admin/NoBarChartStatistics";
 
 import { useEffect, useState } from "react";
@@ -10,10 +10,11 @@ import HorizontalBarShimmer from "@/components/common/admin/shimmers/HorizontalB
 type TopVehiclesProps = {};
 
 const TopVehicles = (props: TopVehiclesProps) => {
-  const { data:vehicles, isLoading, isFetching, isError, refetch} = useGetTopVehiclesStatQuery()
+  const { data:vehicles, isLoading, isFetching, isError, refetch} = useGetTopVehiclesByOfferStatQuery()
   const models = vehicles?.map(vehicle => vehicle.model) || []
   const counts = vehicles?.map(vehicle => vehicle.count) || []
   const loading = isLoading || isFetching
+  
   return (
     <div className="w-full lg:w-[60%] p-5 rounded-lg border space-y-5 bg-white shadow-lg max-w-4xl">
       <div className="text-xl font-semibold w-fit">Top Vehicles By Offers</div>

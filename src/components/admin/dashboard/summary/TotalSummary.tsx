@@ -1,5 +1,4 @@
 import { useGetTotalSummaryQuery } from '@/store/api'
-import React from 'react'
 import { AiOutlineUser } from 'react-icons/ai'
 import Card from '../Card'
 import { MdOutlineLocalOffer, MdOutlineRequestPage } from 'react-icons/md'
@@ -16,18 +15,19 @@ const icons = new Map([
 
 ])
 
-const TotalCommuters = (props: Props) => {
-    const { data, isLoading } = useGetTotalSummaryQuery()
+const TotalSummary = (props: Props) => {
+  const { data, isLoading } = useGetTotalSummaryQuery();
+  console.log(data) 
   return (
     <>
         {
           isLoading ? 
           Array.from({length:4}).map((_, index) => <div key={index} className='w-52 h-44 rounded-lg shadow-lg bg-gray-200 animate-pulse' />)
           :
-        data?.map((change, index) => <Card key={index} Icon={icons.get(change.name) as IconType} Item={change}/>)
+        data?.map((change,index) => <Card key={index} Icon={icons.get(change.name) as IconType} Item={change}/>)
         }
     </>
   )
 }
 
-export default TotalCommuters
+export default TotalSummary;
