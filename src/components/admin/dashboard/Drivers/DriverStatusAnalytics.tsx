@@ -3,7 +3,7 @@ import UnknownError from "@/components/common/admin/UnknownError";
 import DoughnutChart from "@/components/common/admin/charts/Doughnut";
 import DoughnutShimmer from "@/components/common/admin/shimmers/DoughnutShimmert";
 import VerticalBarShimmer from "@/components/common/admin/shimmers/VerticalBarShimmer";
-import { useGetDriverStatusStatQuery } from "@/store/api";
+import { useGetDriversStatusStatQuery } from "@/store/api";
 import React, { useEffect, useState } from "react";
 import { ClipLoader } from "react-spinners";
 
@@ -16,7 +16,7 @@ const DriverStatusAnalytics = (props: Props) => {
     isFetching,
     isError,
     refetch
-  } = useGetDriverStatusStatQuery();
+  } = useGetDriversStatusStatQuery();
   const [inner, setInner] = useState(false)
 
   useEffect(() => {
@@ -27,11 +27,14 @@ const DriverStatusAnalytics = (props: Props) => {
       }, 2000);
     }
   });
-  const noData = data?.reduce(
+  const noData = data?.count?.reduce(
     (prev: number, cur: number) => prev + cur,
     0
   ) === 0
+  const chartData = data?.count || []
+  const labels = data?.statuses || []
   const loading = isLoading || isFetching
+  
   return (
     <div className="max-w-md lg:w-[40%] rounded-lg border p-5 space-y-5 bg-white shadow-lg">
       <div className="text-xl font-semibold w-fit">Current Drivers Status</div>
@@ -50,7 +53,7 @@ const DriverStatusAnalytics = (props: Props) => {
             <DoughnutChart
               showLegends={false}
               cutout="70%"
-              chartData={[50, 20, 10]}
+              chartData={chartData}
               labels={["Approved", "Blocked", "Pending"]}
               name="Drivers"
               colors={[
@@ -69,8 +72,8 @@ const DriverStatusAnalytics = (props: Props) => {
               <DoughnutChart
                 showLegends={false}
                 cutout="70%"
-                chartData={data as number[]}
-                labels={["Active", "Idle"]}
+                chartData={chartData}
+                labels={labels}
                 name="Drivers"
                 colors={["rgba(0, 255, 0, 1)", "rgba(255, 0, 0, 1)"]}
               />

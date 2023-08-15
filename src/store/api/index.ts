@@ -44,7 +44,7 @@ export const apiSlice = createApi({
     }),
     getDriverStat: builder.query<VerticalBarChartData, TimeFrame>({
       query: ({ year, month, option }) =>
-        `Driver/statistics?timeFrame=${option}${year ? "&year=" + year : ""}${
+        `statistics/drivers/time-series?timeFrame=${option}${year ? "&year=" + year : ""}${
           month ? "&month=" + month : ""
         }`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
@@ -63,10 +63,16 @@ export const apiSlice = createApi({
         return baseQueryReturnValue.value;
       },
     }),
-    getDriverStatusStat: builder.query<number[], void>({
-      query: () => ` statistics/drivers/status-count`,
+    getDriversStatusStat: builder.query<
+      { statuses: string[]; count: number[] },
+      void
+    >({
+      query: () => `statistics/drivers/status-count`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
-        return baseQueryReturnValue.value;
+        const [statuses, count] = getObjectKeysAndValues(
+          baseQueryReturnValue.value
+        );
+        return { statuses: statuses as string[], count: count as number[] };
       },
     }),
     getCommutersStat: builder.query<VerticalBarChartData, TimeFrame>({
@@ -117,20 +123,14 @@ export const apiSlice = createApi({
         };
       },
     }),
-    getTopVehiclesStat: builder.query<TopVehicles[], void>({
-      query: () => ` statistics/rideoffers/top-ten-model-count`,
+    getTopVehiclesByOfferStat: builder.query<TopVehicles[], void>({
+      query: () => `statistics/rideoffers/top-ten-model-count`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
         return baseQueryReturnValue.value;
       },
     }),
     getUserByID: builder.query<User, string>({
       query: (id) => `users/withAGiven/${id}`,
-      transformResponse(baseQueryReturnValue: any, meta, arg) {
-        return baseQueryReturnValue.value;
-      },
-    }),
-    getTotalCommuters: builder.query<PercentageChange, void>({
-      query: () => `statstics/week/percentage-change`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
         return baseQueryReturnValue.value;
       },
@@ -215,14 +215,14 @@ export const apiSlice = createApi({
         return { statuses: statuses as string[], count: count as number[] };
       },
     }),
-    getRiderOffersOverTimeStatusStat: builder.query<
+    getRideOffersOverTimeStatusStat: builder.query<
       { failed: VerticalBarChartData; completed: VerticalBarChartData },
       TimeFrame
     >({
       query: ({ year, month, option }) =>
         `statistics/rideoffers/time-series-for-each-status?timeframe=${option}${
-          year ? "&Year=" + year : ""
-        }${month ? "&Month=" + month : ""}`,
+          year ? "&year=" + year : ""
+        }${month ? "&month=" + month : ""}`,
       transformResponse(baseQueryReturnValue: any, meta, arg) {
         const [failedX, failedY] = getObjectKeysAndValues(
           baseQueryReturnValue.value.failed
@@ -302,7 +302,6 @@ export const apiSlice = createApi({
         };
       },
     }),
-    
     searchRideOffers: builder.query<{ pages: number; offers: Offer[] }, OffersFilter>({
       query: ({ page, size, query, status, phone, MinCost,MaxCost }) =>
         `RideOffers/Search?PageNumber=${page}&PageSize=${size}${query && "&DriverName=" + query}${status && "&Status=" + status}${MinCost && "&MinCost=" + MinCost}${MaxCost && "&MaxCost=" + MaxCost}${
@@ -390,17 +389,16 @@ export const {
   useGetCommutersStatusStatQuery,
   useGetRideRequestsStatusCountQuery,
   useGetDriverStatQuery,
-  useGetDriverStatusStatQuery,
+  useGetDriversStatusStatQuery,
   useGetRideOfferStatQuery,
   useGetRideRequestOverTimeStatusStatQuery,
   useGetRideRequestsStatQuery,
   useGetRideRequestsStatusStatQuery,
-  useGetRiderOffersOverTimeStatusStatQuery,
+  useGetRideOffersOverTimeStatusStatQuery,
   useGetRiderOffersStatusStatQuery,
   useGetTopCommutersQuery,
   useGetTopDriversQuery,
-  useGetTopVehiclesStatQuery,
-  useGetTotalCommutersQuery,
+  useGetTopVehiclesByOfferStatQuery,
   useGetVehicleStatQuery,
   useGetCommutersFeedbackQuery,
   useGetUserByIDQuery,

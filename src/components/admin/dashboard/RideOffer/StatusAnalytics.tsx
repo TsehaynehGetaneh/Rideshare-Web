@@ -1,4 +1,4 @@
-import { useGetRiderOffersOverTimeStatusStatQuery } from "@/store/api";
+import { useGetRideOffersOverTimeStatusStatQuery } from "@/store/api";
 import React, { useEffect, useState } from "react";
 import OvertimeStatusAnalytics from "../OvertimeStatusAnalytics";
 import { Interval } from "@/types/stat";
@@ -13,9 +13,10 @@ const RideOfferOvertimeStatusAnalytics = (props: Props) => {
   const [label, setLabel] = useState<string[]>([]);
 
   const { data, isLoading,isFetching, isError, refetch } =
-    useGetRiderOffersOverTimeStatusStatQuery({year:year, month:month, option:interval as Interval});
+    useGetRideOffersOverTimeStatusStatQuery({year:year, month:month, option:interval as Interval});
   const noFailedData = data?.failed.yAxisData.reduce((prev: number, cur: number) => prev + cur, 0) === 0
-  const noCompletedData = data?.failed.yAxisData.reduce((prev: number, cur: number) => prev + cur, 0) === 0
+  const noCompletedData = data?.completed.yAxisData.reduce((prev: number, cur: number) => prev + cur, 0) === 0
+  
   return (
     <div>
       <OvertimeStatusAnalytics

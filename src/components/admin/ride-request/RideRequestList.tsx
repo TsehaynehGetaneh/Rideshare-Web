@@ -68,7 +68,7 @@ const RideRequestList = () => {
   const isLoading =
     filterLoading || paginationLoading || filterFetching || paginationFetching;
   const error = filterError || paginationError;
-  console.log(rideRequests);
+  
   useEffect(() => {
     if (name || status < 4 || fare) {
       setSkipPagination(true);
