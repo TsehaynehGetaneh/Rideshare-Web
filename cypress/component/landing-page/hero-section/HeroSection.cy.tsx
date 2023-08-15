@@ -1,5 +1,5 @@
 import React from "react";
-import HeroSection from "./HeroSection";
+import HeroSection from "../../../../src/components/landing-page/hero-section/HeroSection";
 
 describe("<HeroSection />", () => {
   beforeEach(() => {

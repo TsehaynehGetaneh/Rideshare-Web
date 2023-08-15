@@ -1,5 +1,5 @@
 import React from "react";
-import TextSection from "./TextSection";
+import TextSection from "../../../../src/components/landing-page/benefits-section/TextSection";
 
 describe("<TextSection />", () => {
   beforeEach(() => {

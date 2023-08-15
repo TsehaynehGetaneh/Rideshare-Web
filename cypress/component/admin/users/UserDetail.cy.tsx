@@ -1,5 +1,5 @@
 import { Provider } from "react-redux";
-import UserDetail from "./UserDetail";
+import UserDetail from "../../../../src/components/admin/users/UserDetail";
 import { store } from "@/store/store";
 
 describe("UserDetail Component", () => {

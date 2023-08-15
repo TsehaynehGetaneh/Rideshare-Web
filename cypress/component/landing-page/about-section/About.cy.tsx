@@ -1,4 +1,4 @@
-import About from "./About";
+import About from "../../../../src/components/landing-page/about-section/About";
 
 describe("About component", () => {
   beforeEach(() => {

@@ -1,5 +1,5 @@
 import { Provider } from "react-redux";
-import CommuterFeedback from "./CommuterFeedback";
+import CommuterFeedback from "../../../../../src/components/admin/users/commuters/CommuterFeedback";
 import { store } from "@/store/store";
 
 describe("CommuterFeedback Component", () => {

@@ -1,5 +1,5 @@
 import { mount } from "cypress/react18";
-import { getOfferStatus } from "./Status";
+import { getOfferStatus } from "../../../../src/components/admin/ride-offers/Status";
 
 describe("<getOfferStatus />", () => {
   it("renders ONROUTE status with correct Tailwind class", () => {
