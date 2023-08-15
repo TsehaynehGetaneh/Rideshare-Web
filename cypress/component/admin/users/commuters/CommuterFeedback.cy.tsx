@@ -1,6 +1,6 @@
 import { Provider } from "react-redux";
-import CommuterFeedback from "./CommuterFeedback";
 import { store } from "@/store/store";
+import CommuterFeedback from "@/components/admin/users/commuters/CommuterFeedback";
 
 describe("CommuterFeedback Component", () => {
     beforeEach(() => {

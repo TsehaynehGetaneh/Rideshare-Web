@@ -1,5 +1,5 @@
+import BenefitsImage from "@/components/landing-page/benefits-section/BenefitsImage";
 import React from "react";
-import BenefitsImage from "./BenefitsImage";
 
 describe("<BenefitsImage />", () => {
   beforeEach(() => {

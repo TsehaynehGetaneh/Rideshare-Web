@@ -1,7 +1,7 @@
 import React from "react";
-import Header from "./Header";
 import { Provider } from "react-redux";
 import { store } from "@/store/store";
+import Header from "@/components/common/Header";
 
 describe("<Header />", () => {
   beforeEach(() => {

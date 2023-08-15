@@ -1,5 +1,5 @@
+import Footer from "@/components/common/Footer";
 import React from "react";
-import Footer from "./Footer";
 
 describe("<Footer />", () => {
   beforeEach(() => {

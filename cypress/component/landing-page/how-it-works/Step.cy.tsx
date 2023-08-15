@@ -1,5 +1,5 @@
-import React from "react";
-import Step from "../../../src/components/landing-page/how-it-works/Step";
+import Step from "@/components/landing-page/how-it-works/Step";
+
 describe("<Step />", () => {
   beforeEach(() => {
     // see: https://on.cypress.io/mounting-react
